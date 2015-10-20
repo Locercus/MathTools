@@ -1,5 +1,9 @@
 {
-    "home": {
-
+    "Home": {
+        "tags": [
+            "index",
+            "frontpage"
+        ],
+        "page": "home.html"
     }
 }

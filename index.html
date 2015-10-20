@@ -10,16 +10,24 @@
                 Jon's Math Tools
             </div>
             <div>
-                <input id="searchbar" type="search" placeholder="Search" autofocus>
+                <div id="searchbar">
+                    <div>
+                        <!-- search.svg -->
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Search" stroke="#000000" fill="none">
+                                <circle id="Glass" cx="9" cy="9" r="7"></circle>
+                                <path d="M14.5,14.5 L21.57,21.57" id="Handle" stroke-linecap="square"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <input type="search" placeholder="Search" autofocus>
+                </div>
             </div>
         </section>
-        <section id="content">
-            <div class="fullpage">
-                <h1>Site Index</h1>
-            </div>
-        </section>
+        <section id="content" data-page="home"></section>
 
         <script src="lib/javascript-cas/build/javascript-cas.min.js"></script>
+        <script src="js/lib.js"></script>
         <script src="js/ui.js"></script>
     </body>
 </html>
