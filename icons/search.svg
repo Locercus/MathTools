@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Search" stroke="#000000">
+        <circle id="Glass" cx="9" cy="9" r="7"></circle>
+        <path d="M14.5,14.5 L21.57,21.57" id="Handle" stroke-linecap="square"></path>
+    </g>
+</svg>
