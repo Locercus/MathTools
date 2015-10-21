@@ -15,7 +15,7 @@ function hide(el) {
 }
 
 function toggleDisplay(el) {
-    if(el.classList.contains('hide'))
+    if (el.classList.contains('hide'))
         show(el);
     else
         hide(el);
@@ -32,7 +32,7 @@ function toggleDisplay(el) {
 
     loadPage = function loadPage(page) {
         // Check if the page lists have been loaded
-        if(!(language in pages && 'en-GB' in pages)) {
+        if (!(language in pages && 'en-GB' in pages)) {
             document.addEventListener('pagesReady', function() {
                 loadPage(page);
             });
@@ -40,7 +40,7 @@ function toggleDisplay(el) {
         }
 
         // Check if the page even exists
-        if(page in pages[language])
+        if (page in pages[language])
             var data = pages[language][page];
         else if(page in pages['en-GB'])
             var data = pages['en-GB'][page];
@@ -57,7 +57,7 @@ function toggleDisplay(el) {
         var request = new XMLHttpRequest();
         request.open('GET', root + 'pages/' + language + '/' + page + '.html');
         request.onload = function() {
-            if(this.status >= 200 && this.status < 400) {
+            if (this.status >= 200 && this.status < 400) {
                 // Set data-page
                 $('#content')[0].dataset.page = page;
 
@@ -70,8 +70,8 @@ function toggleDisplay(el) {
                         { left: "\\[", right: "\\]", display: true  }
                     ]
                 });
-                handleAnchors(pageEl);
                 handleToC(pageEl);
+                handleAnchors(pageEl);
             }
             else
                 alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
@@ -89,7 +89,7 @@ function toggleDisplay(el) {
         // Set body class
         var page = $('#content')[0].dataset.page;
         var body = document.body;
-        if(page === 'home') {
+        if (page === 'home') {
             body.classList.add('home');
             body.classList.remove('page');
         }
@@ -110,18 +110,32 @@ function toggleDisplay(el) {
     function anchorCallback(e) {
         e.preventDefault();
 
-        if(e.metaKey || e.ctrlKey || e.button === 1)
+        if (e.metaKey || e.ctrlKey || e.button === 1)
             window.open(this.href);
         else {
             var uri = parseUri(parseUri(this.href).path.substr(1)).path.substr(1);
-            loadPage(uri);
-            history.pushState({page: uri}, '', uri);
+            var hash = this.href.split('#')[1];
+
+            if (hash === undefined) {
+                loadPage(uri);
+                history.pushState({page: uri}, '', uri);
+            }
+            else {
+                if(hash !== '')
+                    history.pushState({page: uri}, '', '#' + hash);
+
+                var el = document.getElementById(hash);
+                if (el === null)
+                    el = document.body;
+                    
+                el.scrollIntoView();
+            }
         }
     }
 
     function handleToC(el) {
         var toc = el.querySelector(':scope .toc');
-        if(toc == null)
+        if (toc == null)
             return;
 
         var headlines = el.querySelectorAll(':scope h2');
@@ -169,15 +183,15 @@ function toggleDisplay(el) {
     (function loadPageList() {
         var e = new CustomEvent('pagesReady');
 
-        if(language != 'en-GB') {
+        if (language != 'en-GB') {
             var english = new XMLHttpRequest();
             english.open('GET', root + 'data/lang/en-GB/pages.json', true);
             english.onload = function() {
-                if(this.status >= 200 && this.status < 400) {
+                if (this.status >= 200 && this.status < 400) {
                     var data = JSON.parse(this.response);
                     pages['en-GB'] = data;
 
-                    if(language in pages)
+                    if (language in pages)
                         document.dispatchEvent(e);
                 }
                 else
@@ -189,11 +203,11 @@ function toggleDisplay(el) {
         var langPages = new XMLHttpRequest();
         langPages.open('GET', root + 'data/lang/' + language + '/pages.json', true);
         langPages.onload = function() {
-            if(this.status >= 200 && this.status < 400) {
+            if (this.status >= 200 && this.status < 400) {
                 var data = JSON.parse(this.response);
                 pages[language] = data;
 
-                if('en-GB' in pages || language === 'en-GB')
+                if ('en-GB' in pages || language === 'en-GB')
                     document.dispatchEvent(e);
             }
             else
@@ -203,7 +217,7 @@ function toggleDisplay(el) {
     })();
 
     // Load page
-    if(page === '')
+    if (page === '')
         page = 'home';
     loadPage(page);
 
@@ -214,6 +228,7 @@ function toggleDisplay(el) {
     });
 
     window.onpopstate = function onpopstate(event) {
-        loadPage(event.state.page);
+        if (event.state !== null)
+            loadPage(event.state.page);
     }
 })();
