@@ -64,6 +64,7 @@ function toggleDisplay(el) {
                 var pageEl = $('#page-content')[0];
                 pageEl.innerHTML = this.response;
                 execBodyScripts(pageEl);
+                handleAnchors(pageEl);
             }
             else
                 alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
@@ -90,6 +91,26 @@ function toggleDisplay(el) {
             body.classList.remove('home');
         }
     };
+
+    function handleAnchors(el) {
+        var anchors = el.querySelectorAll(':scope a');
+
+        [].forEach.call(anchors, function(a) {
+            a.addEventListener('click', anchorCallback);
+        });
+    }
+
+    function anchorCallback(e) {
+        e.preventDefault();
+
+        if(e.metaKey || e.ctrlKey || e.button === 1)
+            window.open(this.href);
+        else {
+            var uri = parseUri(parseUri(this.href).path.substr(1)).path.substr(1);
+            loadPage(uri);
+            history.replaceState({}, '', uri);
+        }
+    }
 
 
 
