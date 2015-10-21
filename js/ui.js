@@ -1,24 +1,24 @@
 var loadPage;
 var showPage;
 
+function show(el) {
+    el.classList.add('show');
+    el.classList.remove('hide');
+}
+
+function hide(el) {
+    el.classList.add('hide');
+    el.classList.remove('show');
+}
+
+function toggleDisplay(el) {
+    if(el.classList.contains('hide'))
+        show(el);
+    else
+        hide(el);
+}
+
 (function ui() {
-    function show(el) {
-        el.classList.add('show');
-        el.classList.remove('hide');
-    }
-
-    function hide(el) {
-        el.classList.add('hide');
-        el.classList.remove('show');
-    }
-
-    function toggleDisplay(el) {
-        if(el.classList.contains('hide'))
-            show(el);
-        else
-            hide(el);
-    }
-
     loadPage = function loadPage(page) {
         // Check if the page lists have been loaded
         if(!(language in pages && 'en-GB' in pages)) {
@@ -47,6 +47,9 @@ var showPage;
         request.open('GET', root + 'pages/' + language + '/' + page + '.html');
         request.onload = function() {
             if(this.status >= 200 && this.status < 400) {
+                // Set data-page
+                $('#content')[0].dataset.page = page;
+
                 var pageEl = $('#page-content')[0];
                 pageEl.innerHTML = this.response;
                 execBodyScripts(pageEl);
@@ -63,6 +66,18 @@ var showPage;
 
     showPage = function showPage() {
         show($('#page-content')[0]);
+
+        // Set body class
+        var page = $('#content')[0].dataset.page;
+        var body = document.body;
+        if(page === 'home') {
+            body.classList.add('home');
+            body.classList.remove('page');
+        }
+        else {
+            body.classList.add('page');
+            body.classList.remove('home');
+        }
     };
 
 
