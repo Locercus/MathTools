@@ -1,11 +1,36 @@
 <div class="fullpage">
     <h1>Site Index</h1>
+    <ul id="site-index"></ul>
 </div>
 <script>
     (function() {
         var pages = getPages();
+        var language = getLanguage();
+        var pageNames = Object.keys(pages['en-GB']);
+        var siteIndex = $('#site-index')[0];
 
-        console.log(pages);
+        var siteIndexItems = [];
+
+        pageNames.forEach(function(page) {
+            var pageName;
+
+            if(page in pages[language])
+                pageName = pages[language][page].name;
+            else
+                pageName = pages['en-GB'][page].name;
+
+            siteIndexItems.push(pageName);
+        });
+
+        siteIndexItems.sort(function(a, b) {
+            return a - b;
+        });
+
+        siteIndexItems.forEach(function(pageName) {
+            var li = document.createElement('li');
+            li.innerText = pageName;
+            siteIndex.appendChild(li);
+        });
 
         showPage();
     })();
