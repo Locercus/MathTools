@@ -8,6 +8,44 @@
     font-family: 'Slabo 13px', serif;
 }
 
+.spinner {
+    margin: 100px auto 0;
+    width: 70px;
+    text-align: center;
+    & > div {
+        width: 18px;
+        height: 18px;
+        background-color: #333;
+        border-radius: 100%;
+        display: inline-block;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+    .bounce1 {
+        animation-delay: -0.32s;
+    }
+    .bounce2 {
+        animation-delay: -0.16s;
+    }
+}
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% { 
+        transform: scale(0);
+    }
+    40% { 
+        transform: scale(1.0);
+    }
+}
+
+.show {
+    transition: opacity 400ms;
+    opacity: 1;
+}
+.hide {
+    transition: opacity 400ms;
+    opacity: 0;
+}
+
+
 
 body {
     margin: 0;
@@ -84,20 +122,25 @@ body {
     }
 
     &> section#content {
-        &> .page-layout {
-            &> h1 {
-                .sans-serif;
-                font-weight: 100;
-                font-size: 36px;
+        width: 100%;
+
+        &> #page-content {
+
+            &> .page-layout {
+                &> h1 {
+                    .sans-serif;
+                    font-weight: 100;
+                    font-size: 36px;
+                }
             }
-        }
 
-        &> .fullpage {
-            .page-layout;
-        }
+            &> .fullpage {
+                .page-layout;
+            }
 
-        &> .page {
-            .page-layout;
+            &> .page {
+                .page-layout;
+            }
         }
     }
 }
