@@ -108,7 +108,7 @@ function toggleDisplay(el) {
         else {
             var uri = parseUri(parseUri(this.href).path.substr(1)).path.substr(1);
             loadPage(uri);
-            history.pushState({}, '', uri);
+            history.pushState({page: uri}, '', uri);
         }
     }
 
@@ -117,6 +117,9 @@ function toggleDisplay(el) {
     var language = 'en-GB';
     root = parseUri(document.currentScript.src).directory + '../';
     var pages = {};
+
+    // Set the current page
+    history.replaceState({page: 'home'}, '', '');
 
 
 
@@ -165,7 +168,11 @@ function toggleDisplay(el) {
 
     // Global listeners
 
-    $('#searchbar')[0].addEventListener('click', function() {
+    $('#searchbar')[0].addEventListener('click', function searchbarclick() {
         this.querySelectorAll(':scope > input')[0].focus();
     });
+
+    window.onpopstate = function onpopstate(event) {
+        loadPage(event.state.page);
+    }
 })();

@@ -154,11 +154,29 @@ body {
         }
     }
 
+    &.page {
+        &> section#content > #page-content {
+            width: 100%;
+        }
+    }
+
     &> section#content {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &> #page-spinner {
+            transition: margin-top 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+            &.hide {
+                margin-top: -40px;
+            }
+        }
 
         &> #page-content {
-            margin: 100px auto 0;
+            padding-left: 100px;
+            box-sizing: border-box;
 
             &> .page-layout {
                 &> h1 {
