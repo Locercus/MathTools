@@ -4,8 +4,18 @@
         <title>Jon's Math Tools</title>
         <link rel="stylesheet" href="style.css">
         <meta name="viewport" content="width=1000, user-scalable=no">
+        <script src="js/lib.js"></script>
     </head>
     <body class="home">
+        <script>
+            var page = parseUri(window.location.pathname.substr(1)).directory.substr(1);
+
+            if(page !== '') {
+                document.body.classList.remove('home');
+                document.body.classList.add('page');
+            }
+        </script>
+
         <section id="menu">
             <div>
                 Jon's Math Tools
@@ -34,7 +44,6 @@
         </section>
 
         <script src="lib/javascript-cas/build/javascript-cas.min.js"></script>
-        <script src="js/lib.js"></script>
         <script src="js/ui.js"></script>
     </body>
 </html>

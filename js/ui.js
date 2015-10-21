@@ -119,7 +119,7 @@ function toggleDisplay(el) {
     var pages = {};
 
     // Set the current page
-    history.replaceState({page: 'home'}, '', '');
+    history.replaceState({page: page}, '', '');
 
 
 
@@ -161,7 +161,6 @@ function toggleDisplay(el) {
     })();
 
     // Load page
-    var page = parseUri(window.location.pathname.substr(1)).directory.substr(1);
     if(page === '')
         page = 'home';
     loadPage(page);
