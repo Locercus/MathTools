@@ -1,4 +1,5 @@
 var loadPage;
+var showPage;
 
 (function ui() {
     function show(el) {
@@ -45,26 +46,32 @@ var loadPage;
         var request = new XMLHttpRequest();
         request.open('GET', root + 'pages/' + language + '/' + page + '.html');
         request.onload = function() {
-            if(this.status >= 200 && this.status < 400)
-                $('#page-content')[0].innerHTML = this.response;
+            if(this.status >= 200 && this.status < 400) {
+                var pageEl = $('#page-content')[0];
+                pageEl.innerHTML = this.response;
+                execBodyScripts(pageEl);
+            }
             else
                 alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
 
             // Hide the loading spinner
             hide($('#page-spinner')[0]);
-
-            // Show the page content
-            show($('#page-content')[0]);
+            
         };
         request.send();
     };
 
+    showPage = function showPage() {
+        show($('#page-content')[0]);
+    };
 
 
 
     var language = 'en-GB';
     var root = parseUri(document.currentScript.src).directory + '../';
     var pages = {};
+
+
 
     // Obtain the list of pages for the current language and en-GB
     (function loadPageList() {
