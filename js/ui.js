@@ -71,6 +71,7 @@ function toggleDisplay(el) {
                     ]
                 });
                 handleAnchors(pageEl);
+                handleToC(pageEl);
             }
             else
                 alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
@@ -116,6 +117,38 @@ function toggleDisplay(el) {
             loadPage(uri);
             history.pushState({page: uri}, '', uri);
         }
+    }
+
+    function handleToC(el) {
+        var toc = el.querySelector(':scope .toc');
+        if(toc == null)
+            return;
+
+        var headlines = el.querySelectorAll(':scope h2');
+
+        var div = document.createElement('div');
+
+        var tocHeader = document.createElement('h3');
+        tocHeader.innerHTML = 'Table of Contents';
+        div.appendChild(tocHeader);
+
+        var ul = document.createElement('ul');
+        div.appendChild(ul);
+
+        var li = document.createElement('li');
+        li.classList.add('active');
+        li.innerHTML = '<a href="#">Introduction</a>';
+        ul.appendChild(li);
+
+        [].forEach.call(headlines, function(headline) {
+            var li = document.createElement('li');
+            var a  = document.createElement('a');
+            a.innerText = headline;
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+
+        toc.innerHTML = div.innerHTML;
     }
 
 
@@ -177,7 +210,7 @@ function toggleDisplay(el) {
     // Global listeners
 
     $('#searchbar')[0].addEventListener('click', function searchbarclick() {
-        this.querySelectorAll(':scope > input')[0].focus();
+        this.querySelector(':scope > input').focus();
     });
 
     window.onpopstate = function onpopstate(event) {

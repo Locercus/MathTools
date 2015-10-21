@@ -166,7 +166,7 @@ body {
     &.page {
         &> section#content > #page-content {
             width: 100%;
-            padding-left: 100px;
+            padding: 0 100px;
         }
     }
 
@@ -188,33 +188,50 @@ body {
             box-sizing: border-box;
 
             &> .page-layout {
-                &> h1 {
+                & h1 {
                     .sans-serif;
                     font-weight: 100;
                     font-size: 42px;
                 }
 
-                &> p {
+                & h3 {
+                    .sans-serif;
+                    font-weight: 400;
+                    font-size: 20px;
+                }
+
+                & p {
                     .serif;
                     text-align: justify;
                     font-size: 22px;
                 }
             }
 
-            &> .fullpage, > .page > .content {
+            &> div {
                 .page-layout;
+
+                width: 100%;
+
+                display: flex;
+
+                &> .content {
+                    flex-basis: 50%; // There's a bug in WebKit and Gecko where the child width exceedes that of its parent when flex-basis is auto.
+                    flex-grow: 1;
+                }
             }
 
             & #site-index {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            & #site-index, .toc > ul {
                 .sans-serif;
                 font-weight: 300;
 
                 list-style-type: none;
                 padding: 0;
-
-                display: flex;
-                flex-direction: column;
-                align-items: center;
 
                 &> li.active {
                     font-weight: 400;
@@ -226,7 +243,18 @@ body {
 
                 &> li > a {
                     color: #000;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
+            }
+
+            & .toc {
+                margin-left: 100px;
+
+                display: table;
             }
         }
     }
