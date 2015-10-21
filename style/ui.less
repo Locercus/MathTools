@@ -68,6 +68,8 @@ body {
     align-items: center;
 
     &> section#menu {
+        transition: .5s, all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -76,6 +78,11 @@ body {
             .sans-serif;
             font-size: 64px;
             margin-bottom: 45px;
+
+            transition: 2s, all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+            // Overwritten by .home
+            opacity: 0;
+            margin-top: -85px;
         }
 
         &> div:nth-child(2) {
@@ -131,6 +138,11 @@ body {
         &> section#menu {
             padding-top: 20vh;
             height: 175px;
+
+            &> div:nth-child(1) {
+                opacity: 1;
+                margin-top: 0;
+            }
         }
 
         &> section#content > #page-content {
@@ -156,11 +168,7 @@ body {
                 }
             }
 
-            &> .fullpage {
-                .page-layout;
-            }
-
-            &> .page {
+            &> .fullpage, > .page > .content {
                 .page-layout;
             }
 
