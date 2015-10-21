@@ -19,16 +19,27 @@
             else
                 pageName = pages['en-GB'][page].name;
 
-            siteIndexItems.push(pageName);
+            siteIndexItems.push({name: page, displayName: pageName});
         });
 
         siteIndexItems.sort(function(a, b) {
-            return a - b;
+            return a.displayName - b.displayName;
         });
 
-        siteIndexItems.forEach(function(pageName) {
+        siteIndexItems.forEach(function(page) {
             var li = document.createElement('li');
-            li.innerText = pageName;
+            var a  = document.createElement('a');
+
+            a.innerText = page.displayName;
+
+            if(page.name === 'home') {
+                li.classList.add('active');
+                a.href = '.'
+            }
+            else
+                a.href = page.name;
+
+            li.appendChild(a);
             siteIndex.appendChild(li);
         });
 

@@ -166,12 +166,26 @@ body {
 
             & #site-index {
                 .sans-serif;
+                font-weight: 300;
+
                 list-style-type: none;
                 padding: 0;
 
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
+                &> li.active {
+                    font-weight: 400;
+                }
+
+                &> li:not(:last-child) {
+                    margin-bottom: 14px;
+                }
+
+                &> li > a {
+                    color: #000;
+                }
             }
         }
     }

@@ -7,5 +7,14 @@
             "index",
             "startpage"
         ]
+    },
+    "linearfunctions": {
+        "name": "Linear functions",
+        "tags": [
+            "function",
+            "linear",
+            "line",
+            "straight"
+        ]
     }
 }

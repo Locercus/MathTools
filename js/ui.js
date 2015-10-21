@@ -2,6 +2,7 @@ var loadPage;
 var showPage;
 var getPages;
 var getLanguage;
+var root;
 
 function show(el) {
     el.classList.add('show');
@@ -93,7 +94,7 @@ function toggleDisplay(el) {
 
 
     var language = 'en-GB';
-    var root = parseUri(document.currentScript.src).directory + '../';
+    root = parseUri(document.currentScript.src).directory + '../';
     var pages = {};
 
 

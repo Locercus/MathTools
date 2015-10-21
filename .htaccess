@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteRule ^(\w+)/$      /MathTools/$1 [R=301]
+RewriteRule ^(\w+)$       index.html
