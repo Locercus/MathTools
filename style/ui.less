@@ -117,14 +117,22 @@ body {
 
     &.home > section#menu {
         padding-top: 20vh;
-        min-height: 500px;
-        height: 40vh;
+        height: 175px;
+    }
+
+    &.home > section#content > #page-content {
+        width: 750px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     &> section#content {
         width: 100%;
 
         &> #page-content {
+            margin: 100px auto 0;
 
             &> .page-layout {
                 &> h1 {

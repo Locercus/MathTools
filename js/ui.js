@@ -38,6 +38,9 @@ var loadPage;
         // Show the loading spinner
         show($('#page-spinner')[0]);
 
+        // Hide the page content
+        hide($('#page-content')[0]);
+
         // Get the page HTML
         var request = new XMLHttpRequest();
         request.open('GET', root + 'pages/' + language + '/' + page + '.html');
@@ -49,6 +52,9 @@ var loadPage;
 
             // Hide the loading spinner
             hide($('#page-spinner')[0]);
+
+            // Show the page content
+            show($('#page-content')[0]);
         };
         request.send();
     };
