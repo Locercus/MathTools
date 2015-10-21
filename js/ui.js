@@ -1,5 +1,6 @@
 var loadPage;
 var showPage;
+var getPages;
 
 function show(el) {
     el.classList.add('show');
@@ -19,6 +20,10 @@ function toggleDisplay(el) {
 }
 
 (function ui() {
+    getPages = function getPages() {
+        return pages;
+    }
+
     loadPage = function loadPage(page) {
         // Check if the page lists have been loaded
         if(!(language in pages && 'en-GB' in pages)) {
