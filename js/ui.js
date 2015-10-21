@@ -119,7 +119,10 @@ function toggleDisplay(el) {
     var pages = {};
 
     // Set the current page
-    history.replaceState({page: page}, '', '');
+    var pageName = page;
+    if(page === '')
+        pageName = 'home';
+    history.replaceState({page: pageName}, '', page);
 
 
 
