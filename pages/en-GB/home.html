@@ -2,5 +2,11 @@
     <h1>Site Index</h1>
 </div>
 <script>
-    showPage();
+    (function() {
+        var pages = getPages();
+
+        console.log(pages);
+
+        showPage();
+    })();
 </script>

@@ -1,6 +1,7 @@
 var loadPage;
 var showPage;
 var getPages;
+var getLanguage;
 
 function show(el) {
     el.classList.add('show');
@@ -22,6 +23,10 @@ function toggleDisplay(el) {
 (function ui() {
     getPages = function getPages() {
         return pages;
+    }
+
+    getLanguage = function getLanguage() {
+        return language;
     }
 
     loadPage = function loadPage(page) {
