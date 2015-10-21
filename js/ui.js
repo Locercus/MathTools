@@ -64,6 +64,12 @@ function toggleDisplay(el) {
                 var pageEl = $('#page-content')[0];
                 pageEl.innerHTML = this.response;
                 execBodyScripts(pageEl);
+                renderMathInElement(pageEl, {
+                    delimiters: [
+                        { left: "$$",  right: "$$",  display: false },
+                        { left: "\\[", right: "\\]", display: true  }
+                    ]
+                });
                 handleAnchors(pageEl);
             }
             else
