@@ -79,22 +79,31 @@ body {
             font-size: 64px;
             margin-bottom: 45px;
 
-            transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+            transition: margin-top, opacity 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
             // Overwritten by .home
             opacity: 0;
             margin-top: -85px;
+
+            @media (max-width: 620px) {
+                font-size: 10vw;
+                margin-top: ~"calc(-18px - 10vw)";
+            }
         }
 
         &> div:nth-child(2) {
             display: flex;
             justify-content: center;
 
+            width: 750px;
+            max-width: ~"calc(100vw - 128px)";
+
             &> #searchbar {
                 display: flex;
                 align-items: center;
 
+                width: 100%;
+
                 box-sizing: border-box;
-                width: 750px;
 
                 padding: 16px 32px;
 
