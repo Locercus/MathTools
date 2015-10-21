@@ -108,7 +108,7 @@ function toggleDisplay(el) {
         else {
             var uri = parseUri(parseUri(this.href).path.substr(1)).path.substr(1);
             loadPage(uri);
-            history.replaceState({}, '', uri);
+            history.pushState({}, '', uri);
         }
     }
 
