@@ -155,9 +155,16 @@ function toggleDisplay(el) {
         ul.appendChild(li);
 
         [].forEach.call(headlines, function(headline) {
+            var name = headline.id;
+            if (name === '') {
+                name = headline.innerText.replace(/\s+/g, '_').replace(/[^\w]/g, '');
+                headline.id = name;
+            }
+
             var li = document.createElement('li');
             var a  = document.createElement('a');
             a.innerText = headline.innerText;
+            a.href = '#' + name;
             li.appendChild(a);
             ul.appendChild(li);
         });
