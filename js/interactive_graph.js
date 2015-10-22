@@ -9,9 +9,7 @@ function InteractiveGraph(options) {
 
     [].forEach.call(this.inputs, function(input) {
         var name  = input.dataset.name;
-        var value = input.dataset.value;
-        if (value === undefined)
-            value = 0;
+        var value = input.dataset.value = self.graphValues[name];
         var min = input.dataset.min;
         if (min === undefined)
             min = 0;
