@@ -75,7 +75,7 @@ function toggleDisplay(el) {
                 showPage();
 
                 // Set title
-                $('title')[0].innerText = data.name + " – Jon's Math Tools";
+                $('title')[0].textContent = data.name + " – Jon's Math Tools";
             }
             else
                 alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
@@ -161,13 +161,13 @@ function toggleDisplay(el) {
         [].forEach.call(headlines, function(headline) {
             var name = headline.id;
             if (name === '') {
-                name = headline.innerText.replace(/\s+/g, '_').replace(/[^\w]/g, '');
+                name = headline.textContent.replace(/\s+/g, '_').replace(/[^\w]/g, '');
                 headline.id = name;
             }
 
             var li = document.createElement('li');
             var a  = document.createElement('a');
-            a.innerText = headline.innerText;
+            a.textContent = headline.textContent;
             a.href = '#' + name;
             li.appendChild(a);
             ul.appendChild(li);
