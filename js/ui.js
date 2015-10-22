@@ -72,6 +72,10 @@ function toggleDisplay(el) {
                 });
                 handleToC(pageEl);
                 handleAnchors(pageEl);
+                showPage();
+
+                // Set title
+                $('title')[0].innerText = data.name + " – Jon's Math Tools";
             }
             else
                 alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
