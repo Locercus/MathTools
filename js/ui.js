@@ -157,7 +157,7 @@ function toggleDisplay(el) {
         [].forEach.call(headlines, function(headline) {
             var li = document.createElement('li');
             var a  = document.createElement('a');
-            a.innerText = headline;
+            a.innerText = headline.innerText;
             li.appendChild(a);
             ul.appendChild(li);
         });
