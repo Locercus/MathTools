@@ -66,7 +66,7 @@ function toggleDisplay(el) {
                 execBodyScripts(pageEl);
                 renderMathInElement(pageEl, {
                     delimiters: [
-                        { left: "$$",  right: "$$",  display: false },
+                        { left: "$",  right: "$",  display: false },
                         { left: "\\[", right: "\\]", display: true  }
                     ]
                 });

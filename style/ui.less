@@ -213,10 +213,46 @@ body {
                     font-size: 20px;
                 }
 
-                & p, dl {
+                & p, dl, .graph-input {
                     .serif;
                     text-align: justify;
                     font-size: 22px;
+                }
+
+                .graph {
+                    width: 100%;
+
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .hor-box {
+                    width: 100%;
+
+                    display: flex;
+                }
+
+                .graph-controls {
+                    width: 30%;
+                }
+
+                .graph-input {
+                    text-align: left;
+
+                    &> span > input {
+                        .sans-serif;
+                        font-size: 18px;
+
+                        text-align: right;
+
+                        box-sizing: border-box;
+                        height: 27px;
+                        width: 80px;
+                    }
+
+                    &:not(:last-child) {
+                        margin-bottom: 64px;
+                    }
                 }
             }
 
