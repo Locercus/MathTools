@@ -103,6 +103,9 @@
 </div>
 <script>
     (function() {
+        var linearGraphMLongString  = katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}');
+        var linearGraphMShortString = katex.renderToString('m');
+
         var linearGraph = new InteractiveGraph({
             plotOptions: {
                 target: "#linear-graph-visualiser > .graph",
@@ -151,7 +154,6 @@
                 var mYText = document.createElement('div');
                 mYText.classList.add('mYText');
                 mYText.classList.add('v-center');
-                mYText.innerHTML = katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}');
                 htmlOverlay.appendChild(mYText);
 
 
@@ -218,9 +220,18 @@
                 if (values.m < 0)
                     ymYText -= values.m;
 
-                mYText.style.left   = coords.x(xmYText) + 'px';
+                var xmYTextCoords = coords.x(xmYText);
+
+                if (Math.abs(values.m) < 1.5) {
+                    mYText.innerHTML = linearGraphMShortString;
+                    xmYTextCoords += 10;
+                }
+                else
+                    mYText.innerHTML = linearGraphMLongString;
+
+                mYText.style.left   = xmYTextCoords     + 'px';
                 mYText.style.bottom = coords.y(ymYText) + 'px';
-                mYText.style.height = size.h(values.m) + 22  + 'px';
+                mYText.style.height = size.h(values.m)  + 'px';
 
 
                 // c text
