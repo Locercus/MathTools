@@ -56,9 +56,11 @@
 }
 
 
-
 body {
     margin: 0;
+}
+
+html > body {
     width: 100%;
     max-width: 100%;
     min-height: 100vh;
@@ -219,12 +221,12 @@ body {
                     font-size: 22px;
                 }
 
-                .graph {
+                & .graph {
                     display: flex;
                     justify-content: center;
                 }
 
-                .hor-box {
+                & .hor-box {
                     width: 100%;
 
                     margin-top: 32px;
@@ -233,11 +235,11 @@ body {
                     justify-content: space-around;
                 }
 
-                .graph-controls {
+                & .graph-controls {
                     width: 30%;
                 }
 
-                .graph-input {
+                & .graph-input {
                     text-align: left;
 
                     &> span > input {
@@ -254,6 +256,12 @@ body {
                     &:not(:last-child) {
                         margin-bottom: 64px;
                     }
+                }
+
+                & .h-center {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                 }
             }
 

@@ -78,21 +78,41 @@ function InteractiveGraph(options) {
 
     function activateInitialDrawCb() {
         if(typeof self.initialDrawCb === 'function') {
+            var coords = {
+                x: function(x) { return self.graph.meta.xScale(x) + self.graph.meta.margin.left },
+                y: function(y) { return self.graph.meta.yScale(y) + self.graph.meta.margin.top  }
+            };
+
             var line = d3.svg.line()
                 .x(function(d) { return self.graph.meta.xScale(d[0]) })
                 .y(function(d) { return self.graph.meta.yScale(d[1]) });
 
-            self.initialDrawCb(self.graph, self.graphValues, line);
+            var size = {
+                w: function(w) { return Math.abs(coords.x(1) - coords.x(0)) * w },
+                h: function(h) { return Math.abs(coords.y(1) - coords.y(0)) * h }
+            };
+
+            self.initialDrawCb(self.graph, self.graphValues, line, coords, size);
         }
     }
 
     function activatePostDrawCb() {
         if (typeof self.postDrawCb === 'function') {
+            var coords = {
+                x: function(x) { return self.graph.meta.xScale(x) + self.graph.meta.margin.left },
+                y: function(y) { return self.graph.meta.yScale(y) + self.graph.meta.margin.top  }
+            };
+
             var line = d3.svg.line()
                 .x(function(d) { return self.graph.meta.xScale(d[0]) })
                 .y(function(d) { return self.graph.meta.yScale(d[1]) });
 
-            self.postDrawCb(self.graph, self.graphValues, line);
+            var size = {
+                w: function(w) { return Math.abs(coords.x(1) - coords.x(0)) * w },
+                h: function(h) { return Math.abs(coords.y(1) - coords.y(0)) * h }
+            };
+
+            self.postDrawCb(self.graph, self.graphValues, line, coords, size);
         }
     }
 }

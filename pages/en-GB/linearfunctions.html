@@ -57,17 +57,33 @@
             },
             inputSelector: '#linear-graph-visualiser > .graph-controls > .graph-input',
             fn: '%mx + %c',
-            initialDrawCb: function(graph, values, line) {
+
+
+            initialDrawCb: function(graph, values, line, coords, size) {
                 var canvas = graph.canvas[0][0];
+                var svg = canvas.parentNode;
 
-                var g = document.createSVGElement('g');
-                var slope = document.createSVGElement('path');
+                var gSlope = document.createSVGElement('g');
+                var slope  = document.createSVGElement('path');
                 slope.classList.add('drawSlope');
+                slope.setAttribute('stroke',           'black');
+                slope.setAttribute('opacity',          .75);
+                slope.setAttribute('stroke-dasharray', '5,5');
+                slope.setAttribute('fill',             'none');
 
-                g.appendChild(slope);
-                canvas.appendChild(g);
+                gSlope.appendChild(slope);
+                canvas.appendChild(gSlope);
+
+                console.log(graph.meta, graph.meta.xScale(0))
+
+                var xText  = document.createHTMLInSVG('<div class="h-center">' + katex.renderToString('\\leftarrow 1 \\rightarrow') + '</div>', coords.x(0), coords.y(1.75), size.w(1), size.h(.5));
+                xText.classList.add('drawXText');
+
+                svg.insertBefore(xText, svg.firstChild);
             },
-            postDrawCb: function(graph, values, line) {
+
+
+            postDrawCb: function(graph, values, line, coords, size) {
                 var canvas = graph.canvas[0][0];
                 
                 var fn = function(x) {
@@ -77,21 +93,30 @@
                     return (y - values.c) / values.m;
                 };
 
+
+                // Slope
                 var slope = canvas.querySelector('.drawSlope');
-                slope.setAttribute('stroke',           'black');
-                slope.setAttribute('opacity',          .75);
-                slope.setAttribute('stroke-dasharray', '5,5');
-                slope.setAttribute('fill',             'none');
 
-                var y1 = 2;
-                var x1 = fnReverse(y1);
+                var y1Slope = 2;
+                var x1Slope = fnReverse(y1Slope);
 
-                var x2 = x1 + 1;
-                var y2 = y1;
+                var x2Slope = x1Slope + 1;
+                var y2Slope = y1Slope;
 
-                var x3 = x2;
-                var y3 = fn(x2);
-                slope.setAttribute('d', line([ [x1, y1], [x2, y2], [x3, y3] ]));
+                var x3Slope = x2Slope;
+                var y3Slope = fn(x2Slope);
+                slope.setAttribute('d', line([ [x1Slope, y1Slope], [x2Slope, y2Slope], [x3Slope, y3Slope] ]));
+
+
+                // x text
+                var xText = canvas.querySelector('.drawXText');
+
+                var xXText = x1Slope + .5;
+                var yXText = y1Slope - .5;
+
+                var translation = 'translate(' + coords.x(x1Slope) + ',' + coords.y(y1Slope) + ')';
+
+                //xText.setAttribute('transform', translation);
             }
         });
     })();
