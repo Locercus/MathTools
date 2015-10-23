@@ -74,7 +74,7 @@
 
 
                 // x text
-                var html = '<div class="h-center">' + katex.renderToString('\\leftarrow 1 \\rightarrow') + '</div>';
+                var html = '<div class="h-center v-center">' + katex.renderToString('\\leftarrow 1 \\rightarrow') + '</div>';
                 var xText = document.createHTMLInSVG(html, 0, 0, size.w(1), size.h(.5));
                 xText.classList.add('drawXText');
 
@@ -82,7 +82,7 @@
 
 
                 // y text
-                var html = '<div class="v-center">' + katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}') + '</div>';
+                var html = '<div class="h-center v-center">' + katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}') + '</div>';
                 var yText = document.createHTMLInSVG(html, 0, 0, size.w(.5), size.h(1));
                 yText.classList.add('drawYText');
 
