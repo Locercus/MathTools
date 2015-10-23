@@ -92,7 +92,9 @@
                 // c text
                 var cText = document.createElement('div');
                 cText.classList.add('cText');
+                cText.classList.add('v-center');
                 cText.innerHTML = katex.renderToString('(0, c)');
+                cText.style.left = coords.x(0) - 55 + 'px';
                 htmlOverlay.appendChild(cText);
             },
 
@@ -145,7 +147,13 @@
 
                 mYText.style.left   = coords.x(xmYText) + 'px';
                 mYText.style.bottom = coords.y(ymYText) + 'px';
-                mYText.style.height = size.h(values.m)  + 'px';
+                mYText.style.height = size.h(values.m) + 22  + 'px';
+
+
+                // c text
+                var cText = htmlOverlay.querySelector('.cText');
+
+                cText.style.top = coords.y(values.c) - 10 + 'px';
             }
         });
     })();
