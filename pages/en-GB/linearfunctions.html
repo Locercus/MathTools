@@ -4,6 +4,9 @@
         <p>
             A linear function is a function of the type $f(x) = mx + c$. Its graph will always be a straight line when drawn in a linear coordinate system. Thus, the <i>absolute</i> growth rates of $x$ and $f$ are proportional: $\Delta f = m \cdot \Delta x$.
         </p>
+        <p>
+            Linear functions are used to describe a relationship where $f$ grows by a set amount for every $x$—$f$ and $x$ are linearly proportional (often referred to simply as proportional).
+        </p>
 
         <h2>Significance of constants</h2>
         <dl>
@@ -19,7 +22,7 @@
         <p>
             You can try out linear functions with the below interactive illustration to get a visualisation of the significance of each of the constants:
         </p>
-        <div id="linear-graph-visualiser" class="hor-box">
+        <div id="linear-graph-visualiser" class="hor-box margin-box">
             <div class="graph"></div>
             <div class="graph-controls">
                 <div class="graph-input" data-name = "m" data-min="-10" data-max="10">
@@ -29,6 +32,69 @@
                 <div class="graph-input" data-name = "c" data-min="-5" data-max="5">
                     <span>$c = $ <input type="number"></span>
                     <input type="range">
+                </div>
+            </div>
+        </div>
+
+        <h2>Formulae</h2>
+        <div class="formulae">
+            <div>
+                <div class="formula">
+                    \[
+                        c = y - mx
+                    \]
+                </div>
+                <div class="description">
+                    <p>
+                        You can find the offset $c$ given the slope $m$ and one point on the graph $(x, y)$.
+                    </p>
+                </div>
+                <div class="proof">
+                    \[
+                        \begin{array}{rcl}
+                            y     &amp; = &amp; mx + c                    \\[.5em]
+                            &amp; \Updownarrow &amp; \text{Subtract } mx. \\[.5em]
+                            y -mx &amp; = &amp; c                         \\
+                        \end{array}
+                    \]
+                </div>
+            </div>
+            <div>
+                <div class="formula">
+                    \[
+                        m = \frac{\Delta y}{\Delta x} = \frac{\Delta f}{\Delta x}
+                    \]
+                </div>
+                <div class="description">
+                    <p>
+                        You can find the slope $m$ given the difference between two points on the graph: $\Delta y = y_2 - y_1, \Delta x = x_2 - x_1$.
+                    </p>
+                </div>
+                <div class="proof">
+                    <p>
+                        We create two equations from the two points $(x_1, y_1)$ and $(x_2, y_2)$:
+                    </p>
+                    <p>
+                        \[
+                            y_2 = mx_2 + c \enspace \text{ and } \enspace y_1 = mx_1 + c
+                        \]
+                    </p>
+                    <p>
+                        We subtract the equations (getting rid of $c$ in both, as $c - c = 0$):
+                    </p>
+                    <p>
+                        \[
+                            \begin{array}{rcl}
+                                y_2 - y_1                   &amp; = &amp; mx_2 - mx_1                 \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Factor in }m.                          \\[.5em]
+                                y_2 - y_2                   &amp; = &amp; m(x_2 - x_1)                \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Divide by }x_2 - x_1.                  \\
+                                \frac{y_2 - y_1}{x_2 - x_1} &amp; = &amp; m                           \\
+                                &amp; \Updownarrow &amp;                                              \\
+                                \frac{\Delta y}{\Delta x}   &amp; = &amp; m
+                            \end{array}
+                        \]
+                    </p>
                 </div>
             </div>
         </div>

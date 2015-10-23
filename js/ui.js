@@ -21,6 +21,23 @@ function toggleDisplay(el) {
         hide(el);
 }
 
+function showHard(el) {
+    el.classList.add('show-hard');
+    el.classList.remove('hide-hard');
+}
+
+function hideHard(el) {
+    el.classList.add('hide-hard');
+    el.classList.remove('show-hard');
+}
+
+function toggleDisplayHard(el) {
+    if (el.classList.contains('hide-hard'))
+        showHard(el);
+    else
+        hideHard(el);
+}
+
 (function ui() {
     getPages = function getPages() {
         return pages;
@@ -71,6 +88,7 @@ function toggleDisplay(el) {
                     ]
                 });
                 handleToC(pageEl);
+                handleFormulaBox(pageEl);
                 handleAnchors(pageEl);
                 showPage();
 
@@ -179,6 +197,46 @@ function toggleDisplay(el) {
 
         toc.style.width = width;
         div.style.position = 'fixed';
+    }
+
+    function handleFormulaBox(el) {
+        var formulaBoxes = el.querySelectorAll(':scope .formulae');
+
+        [].forEach.call(formulaBoxes, function(formulaBox) {
+            var formulae = formulaBox.querySelectorAll(':scope > div');
+
+            [].forEach.call(formulae, function(formula) {
+                var proof = formula.querySelector(':scope > .proof');
+                proof.classList.add('hide-hard');
+
+                var description = formula.querySelector(':scope > .description');
+
+                var descriptionContainer = document.createElement('div');
+
+                while (description.childNodes.length > 0)
+                    descriptionContainer.appendChild(description.firstChild);
+
+                description.appendChild(descriptionContainer);
+
+                var proofButton = document.createElement('div');
+                proofButton.textContent = 'Show Proof';
+                proofButton.classList.add('proof-button');
+                description.appendChild(proofButton);
+
+                proofButton.addEventListener('click', function() {
+                    if (this.classList.contains('toggled')) {
+                        this.textContent = 'Show Proof';
+                        this.classList.remove('toggled');
+                    }
+                    else {
+                        this.textContent = 'Hide Proof';
+                        this.classList.add('toggled');
+                    }
+
+                    toggleDisplayHard(this.parentNode.parentNode.querySelector(':scope > .proof'));
+                });
+            });
+        });
     }
 
 

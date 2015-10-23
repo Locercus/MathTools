@@ -54,6 +54,12 @@
     transition: opacity 400ms;
     opacity: 0;
 }
+.show-hard {
+    display: block;
+}
+.hide-hard {
+    display: none;
+}
 
 
 body {
@@ -207,6 +213,7 @@ html > body {
                     .sans-serif;
                     font-weight: 400;
                     font-size: 32px;
+                    margin-top: 50px;
                 }
 
                 & h3 {
@@ -233,6 +240,10 @@ html > body {
                             position: absolute;
                         }
                     }
+                }
+
+                & .margin-box {
+                    margin: 48px 0;
                 }
 
                 & .hor-box {
@@ -282,6 +293,69 @@ html > body {
                 & .center {
                     .h-center;
                     .v-center;
+                }
+
+                & .formulae {
+                    &> div {
+                        display: flex;
+                        flex-direction: column;
+
+                        padding: 32px;
+
+                        &:nth-child(odd) {
+                            background-color: lightgray;
+
+                            &> .proof {
+                                border-top: 2px dashed #bac0d1;
+                            }
+                        }
+                        &:nth-child(even) {
+                            background-color: #bac0d1;
+
+                            &> .proof {
+                                border-top: 2px dashed #a0a5b5;
+                            }
+                        }
+
+
+
+                        &> .formula {
+                            display: table;
+                            font-size: 22px;
+                        }
+
+                        &> .description {
+                            display: flex;
+                            justify-content: space-between;
+
+
+                            &> .proof-button {
+                                .sans-serif;
+                                font-size: 20px;
+                                font-weight: 300;
+                                background-color: #fff;
+                                box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
+
+                                display: table;
+
+                                box-sizing: border-box;
+                                width: 120px;
+                                padding: 8px 0;
+                                margin-top: 18px;
+
+                                text-align: center;
+
+                                cursor: pointer;
+
+                                user-select: none;
+                            }
+                        }
+
+                        &> .description > :first-child, .proof {
+                            padding: 0 40px;
+                            font-size: 22px;
+                        }
+                    }
                 }
             }
 
@@ -340,6 +414,10 @@ html > body {
 
                 &> div {
                     width: 100%;
+
+                    &> h3 {
+                        margin-top: 40px;
+                    }
                 }
             }
         }
