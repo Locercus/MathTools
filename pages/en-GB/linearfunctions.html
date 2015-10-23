@@ -59,10 +59,8 @@
             fn: '%mx + %c',
 
 
-            initialDrawCb: function(graph, values, line, coords, size) {
-                var canvas = graph.canvas[0][0];
-                var svg = canvas.parentNode;
-
+            initialDrawCb: function(graph, canvas, values, line, coords, size) {
+                // Slope
                 var gSlope = document.createSVGElement('g');
                 var slope  = document.createSVGElement('path');
                 slope.classList.add('drawSlope');
@@ -74,18 +72,25 @@
                 gSlope.appendChild(slope);
                 canvas.appendChild(gSlope);
 
+
+                // x text
                 var html = '<div class="h-center">' + katex.renderToString('\\leftarrow 1 \\rightarrow') + '</div>';
-                var xText  = document.createHTMLInSVG(html, 0, 0, size.w(1), size.h(.5));
+                var xText = document.createHTMLInSVG(html, 0, 0, size.w(1), size.h(.5));
                 xText.classList.add('drawXText');
 
-                svg.insertBefore(xText, svg.firstChild);
+                canvas.insertBefore(xText, canvas.firstChild);
+
+
+                // y text
+                var html = '<div class="v-center">' + katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}') + '</div>';
+                var yText = document.createHTMLInSVG(html, 0, 0, size.w(.5), size.h(1));
+                yText.classList.add('drawYText');
+
+                canvas.insertBefore(yText, canvas.firstChild);
             },
 
 
-            postDrawCb: function(graph, values, line, coords, size) {
-                var canvas = graph.canvas[0][0];
-                var svg = canvas.parentNode;
-                
+            postDrawCb: function(graph, canvas, values, line, coords, size) {
                 var fn = function(x) {
                     return values.m * x + values.c;
                 };
@@ -109,7 +114,7 @@
 
 
                 // x text
-                var xText = svg.querySelector('.drawXText');
+                var xText = canvas.querySelector('.drawXText');
 
                 var xXText = x1Slope;
                 var yXText = y1Slope;
@@ -122,6 +127,19 @@
 
                 xText.setAttribute('x', coords.x(xXText));
                 xText.setAttribute('y', yXTextCoords);
+
+
+                // y text
+                var yText = canvas.querySelector('.drawYText');
+
+                var xYText = x3Slope;
+                var yYText = y3Slope;
+                if (values.m < 0)
+                    yYText = y2Slope;
+
+                yText.setAttribute('x', coords.x(xYText));
+                yText.setAttribute('y', coords.y(yYText));
+                yText.setAttribute('height', size.h(values.m));
             }
         });
     })();
