@@ -59,7 +59,7 @@
             fn: '%mx + %c',
 
 
-            initialDrawCb: function(graph, canvas, values, line, coords, size) {
+            initialDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size) {
                 // Slope
                 var gSlope = document.createSVGElement('g');
                 var slope  = document.createSVGElement('path');
@@ -73,24 +73,31 @@
                 canvas.appendChild(gSlope);
 
 
-                // x text
-                var html = '<div class="h-center v-center">' + katex.renderToString('\\leftarrow 1 \\rightarrow') + '</div>';
-                var xText = document.createHTMLInSVG(html, 0, 0, size.w(1), size.h(.5));
-                xText.classList.add('drawXText');
+                // m x text
+                var mXText = document.createElement('div');
+                mXText.classList.add('mXText');
+                mXText.classList.add('h-center');
+                mXText.innerHTML = katex.renderToString('\\leftarrow 1 \\rightarrow');
+                htmlOverlay.appendChild(mXText);
 
-                canvas.insertBefore(xText, canvas.firstChild);
+
+                // m y text
+                var mYText = document.createElement('div');
+                mYText.classList.add('mYText');
+                mYText.classList.add('v-center');
+                mYText.innerHTML = katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}');
+                htmlOverlay.appendChild(mYText);
 
 
-                // y text
-                var html = '<div class="h-center v-center">' + katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}') + '</div>';
-                var yText = document.createHTMLInSVG(html, 0, 0, size.w(.5), size.h(1));
-                yText.classList.add('drawYText');
-
-                canvas.insertBefore(yText, canvas.firstChild);
+                // c text
+                var cText = document.createElement('div');
+                cText.classList.add('cText');
+                cText.innerHTML = katex.renderToString('(0, c)');
+                htmlOverlay.appendChild(cText);
             },
 
 
-            postDrawCb: function(graph, canvas, values, line, coords, size) {
+            postDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size) {
                 var fn = function(x) {
                     return values.m * x + values.c;
                 };
@@ -113,33 +120,32 @@
                 slope.setAttribute('d', line([ [x1Slope, y1Slope], [x2Slope, y2Slope], [x3Slope, y3Slope] ]));
 
 
-                // x text
-                var xText = canvas.querySelector('.drawXText');
+                // m x text
+                var mXText = htmlOverlay.querySelector('.mXText');
 
-                var xXText = x1Slope;
-                var yXText = y1Slope;
+                var xmXText = x1Slope;
+                var ymXText = y1Slope;
 
-                var yXTextCoords = coords.y(yXText);
+                var ymXTextCoords = coords.y(ymXText);
                 if (values.m > 0)
-                    yXTextCoords += 10;
-                else
-                    yXTextCoords -= 25;
+                    ymXTextCoords -= 25;
 
-                xText.setAttribute('x', coords.x(xXText));
-                xText.setAttribute('y', yXTextCoords);
+                mXText.style.left   = coords.x(xmXText) + 'px';
+                mXText.style.bottom = ymXTextCoords     + 'px';
+                mXText.style.width  = size.w(1)         + 'px';
 
 
-                // y text
-                var yText = canvas.querySelector('.drawYText');
+                // m y text
+                var mYText = htmlOverlay.querySelector('.mYText');
 
-                var xYText = x3Slope;
-                var yYText = y3Slope;
+                var xmYText = x3Slope;
+                var ymYText = y2Slope;
                 if (values.m < 0)
-                    yYText = y2Slope;
+                    ymYText -= values.m;
 
-                yText.setAttribute('x', coords.x(xYText));
-                yText.setAttribute('y', coords.y(yYText));
-                yText.setAttribute('height', size.h(values.m));
+                mYText.style.left   = coords.x(xmYText) + 'px';
+                mYText.style.bottom = coords.y(ymYText) + 'px';
+                mYText.style.height = size.h(values.m)  + 'px';
             }
         });
     })();

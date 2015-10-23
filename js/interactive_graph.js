@@ -7,7 +7,16 @@ function InteractiveGraph(options) {
     this.initialDrawCb = options.initialDrawCb;
     this.postDrawCb    = options.postDrawCb;
 
+    this.htmlOverlay   = document.createElement('div');
+    this.htmlOverlay.classList.add('graph-html-overlay');
+    this.htmlOverlay.style.height     = this.plotOptions.height - this.graph.meta.margin.top  - this.graph.meta.margin.bottom  + 'px';
+    this.htmlOverlay.style.width      = this.plotOptions.width  - this.graph.meta.margin.left - this.graph.meta.margin.right   + 'px';
+    this.htmlOverlay.style.marginLeft = -this.plotOptions.width + this.graph.meta.margin.left + 'px';
+    this.htmlOverlay.style.marginTop  = this.graph.meta.margin.top + 'px';
+    $(this.plotOptions.target)[0].appendChild(this.htmlOverlay);
+
     var self = this;
+
 
     activateInitialDrawCb();
 
@@ -94,7 +103,7 @@ function InteractiveGraph(options) {
 
             var canvas = self.graph.canvas[0][0].querySelector('.content');
 
-            self.initialDrawCb(self.graph, canvas, self.graphValues, line, coords, size);
+            self.initialDrawCb(self.graph, canvas, self.htmlOverlay, self.graphValues, line, coords, size);
         }
     }
 
@@ -116,7 +125,7 @@ function InteractiveGraph(options) {
 
             var canvas = self.graph.canvas[0][0].querySelector('.content');
 
-            self.postDrawCb(self.graph, canvas, self.graphValues, line, coords, size);
+            self.postDrawCb(self.graph, canvas, self.htmlOverlay, self.graphValues, line, coords, size);
         }
     }
 }
