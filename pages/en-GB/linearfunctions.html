@@ -74,9 +74,8 @@
                 gSlope.appendChild(slope);
                 canvas.appendChild(gSlope);
 
-                console.log(graph.meta, graph.meta.xScale(0))
-
-                var xText  = document.createHTMLInSVG('<div class="h-center">' + katex.renderToString('\\leftarrow 1 \\rightarrow') + '</div>', coords.x(0), coords.y(1.75), size.w(1), size.h(.5));
+                var html = '<div class="h-center">' + katex.renderToString('\\leftarrow 1 \\rightarrow') + '</div>';
+                var xText  = document.createHTMLInSVG(html, 0, 0, size.w(1), size.h(.5));
                 xText.classList.add('drawXText');
 
                 svg.insertBefore(xText, svg.firstChild);
@@ -85,6 +84,7 @@
 
             postDrawCb: function(graph, values, line, coords, size) {
                 var canvas = graph.canvas[0][0];
+                var svg = canvas.parentNode;
                 
                 var fn = function(x) {
                     return values.m * x + values.c;
@@ -109,14 +109,19 @@
 
 
                 // x text
-                var xText = canvas.querySelector('.drawXText');
+                var xText = svg.querySelector('.drawXText');
 
-                var xXText = x1Slope + .5;
-                var yXText = y1Slope - .5;
+                var xXText = x1Slope;
+                var yXText = y1Slope;
 
-                var translation = 'translate(' + coords.x(x1Slope) + ',' + coords.y(y1Slope) + ')';
+                var yXTextCoords = coords.y(yXText);
+                if (values.m > 0)
+                    yXTextCoords += 10;
+                else
+                    yXTextCoords -= 25;
 
-                //xText.setAttribute('transform', translation);
+                xText.setAttribute('x', coords.x(xXText));
+                xText.setAttribute('y', yXTextCoords);
             }
         });
     })();
