@@ -1,11 +1,17 @@
 function InteractiveGraph(options) {
-    this.plotOptions = options.plotOptions;
-    this.graph       = functionPlot(this.plotOptions);
-    this.graphValues = options.defaultValues;
-    this.inputs      = $(options.inputSelector);
-    this.fnFormat    = options.fn;
+    this.plotOptions   = options.plotOptions;
+    this.graph         = functionPlot(this.plotOptions);
+    this.graphValues   = options.defaultValues;
+    this.inputs        = $(options.inputSelector);
+    this.fnFormat      = options.fn;
+    this.initialDrawCb = options.initialDrawCb;
+    this.postDrawCb    = options.postDrawCb;
 
     var self = this;
+
+    activateInitialDrawCb();
+
+    activatePostDrawCb();
 
     [].forEach.call(this.inputs, function(input) {
         var name  = input.dataset.name;
@@ -35,7 +41,7 @@ function InteractiveGraph(options) {
     function handleGraphTypeInput(e) {
         var parent = this.parentNode.parentNode;
         var rangeInput = parent.querySelector(':scope > input');
-        var value = this.value;
+        var value = parseFloat(this.value, 10);
 
         rangeInput.value = this.value;
 
@@ -45,7 +51,7 @@ function InteractiveGraph(options) {
     function handleGraphRangeInput(e) {
         var parent = this.parentNode;
         var typeInput = parent.querySelector(':scope > span > input');
-        var value = this.value;
+        var value = parseFloat(this.value, 10);
 
         typeInput.value = this.value;
 
@@ -66,5 +72,27 @@ function InteractiveGraph(options) {
         self.plotOptions.data = [{ fn: fn }];
 
         self.graph = functionPlot(self.plotOptions);
+
+        activatePostDrawCb();
+    }
+
+    function activateInitialDrawCb() {
+        if(typeof self.initialDrawCb === 'function') {
+            var line = d3.svg.line()
+                .x(function(d) { return self.graph.meta.xScale(d[0]) })
+                .y(function(d) { return self.graph.meta.yScale(d[1]) });
+
+            self.initialDrawCb(self.graph, self.graphValues, line);
+        }
+    }
+
+    function activatePostDrawCb() {
+        if (typeof self.postDrawCb === 'function') {
+            var line = d3.svg.line()
+                .x(function(d) { return self.graph.meta.xScale(d[0]) })
+                .y(function(d) { return self.graph.meta.yScale(d[1]) });
+
+            self.postDrawCb(self.graph, self.graphValues, line);
+        }
     }
 }

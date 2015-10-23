@@ -56,7 +56,43 @@
                 c: 2
             },
             inputSelector: '#linear-graph-visualiser > .graph-controls > .graph-input',
-            fn: '%mx + %c'
+            fn: '%mx + %c',
+            initialDrawCb: function(graph, values, line) {
+                var canvas = graph.canvas[0][0];
+
+                var g = document.createSVGElement('g');
+                var slope = document.createSVGElement('path');
+                slope.classList.add('drawSlope');
+
+                g.appendChild(slope);
+                canvas.appendChild(g);
+            },
+            postDrawCb: function(graph, values, line) {
+                var canvas = graph.canvas[0][0];
+                
+                var fn = function(x) {
+                    return values.m * x + values.c;
+                };
+                var fnReverse = function(y) {
+                    return (y - values.c) / values.m;
+                };
+
+                var slope = canvas.querySelector('.drawSlope');
+                slope.setAttribute('stroke',           'black');
+                slope.setAttribute('opacity',          .75);
+                slope.setAttribute('stroke-dasharray', '5,5');
+                slope.setAttribute('fill',             'none');
+
+                var y1 = 2;
+                var x1 = fnReverse(y1);
+
+                var x2 = x1 + 1;
+                var y2 = y1;
+
+                var x3 = x2;
+                var y3 = fn(x2);
+                slope.setAttribute('d', line([ [x1, y1], [x2, y2], [x3, y3] ]));
+            }
         });
     })();
 </script>

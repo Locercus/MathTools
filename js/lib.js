@@ -2,6 +2,10 @@ var $ = function() {
     return document.querySelectorAll.apply(document, arguments);
 };
 
+document.createSVGElement = function(name) {
+  return document.createElementNS("http://www.w3.org/2000/svg", name);
+}
+
 // parseUri 1.2.2
 // (c) Steven Levithan <stevenlevithan.com>
 // MIT License
