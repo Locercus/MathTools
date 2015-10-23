@@ -295,7 +295,7 @@ html > body {
                 display: flex;
 
                 &> .content {
-                    flex-basis: 50%; // There's a bug in WebKit and Gecko where the child width exceedes that of its parent when flex-basis is auto.
+                    flex-basis: 100px; // There's a bug in WebKit and Gecko where the child width exceedes that of its parent when flex-basis is auto.
                     flex-grow: 1;
                 }
             }
@@ -306,7 +306,7 @@ html > body {
                 align-items: center;
             }
 
-            & #site-index, .toc > ul {
+            & #site-index, .toc > div > ul {
                 .sans-serif;
                 font-weight: 300;
 
@@ -334,7 +334,13 @@ html > body {
             & .toc {
                 margin-left: 100px;
 
+                height: 100%;
+
                 display: table;
+
+                &> div {
+                    width: 100%;
+                }
             }
         }
     }

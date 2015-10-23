@@ -173,7 +173,12 @@ function toggleDisplay(el) {
             ul.appendChild(li);
         });
 
-        toc.innerHTML = div.innerHTML;
+        toc.appendChild(div);
+
+        var width = toc.offsetWidth + 'px';
+
+        toc.style.width = width;
+        div.style.position = 'fixed';
     }
 
 
