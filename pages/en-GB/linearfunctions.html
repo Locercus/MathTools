@@ -96,6 +96,13 @@
                 cText.innerHTML = katex.renderToString('(0, c)');
                 cText.style.left = coords.x(0) - 55 + 'px';
                 htmlOverlay.appendChild(cText);
+
+                // c dot
+                var cDot = document.createSVGElement('circle');
+                cDot.classList.add('cDot');
+                cDot.setAttribute('cx', coords.x(0));
+                cDot.setAttribute('r', 3);
+                canvas.appendChild(cDot);
             },
 
 
@@ -154,6 +161,12 @@
                 var cText = htmlOverlay.querySelector('.cText');
 
                 cText.style.top = coords.y(values.c) - 10 + 'px';
+
+
+                // c dot
+                var cDot = canvas.querySelector('.cDot');
+
+                cDot.setAttribute('cy', coords.y(values.c));
             }
         });
     })();
