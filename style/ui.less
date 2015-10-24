@@ -317,21 +317,13 @@ html > body {
 
                         padding: 32px;
 
-                        &:nth-child(odd) {
-                            background-color: lightgray;
-
-                            &> .proof {
-                                border-top: 2px dashed #bac0d1;
-                            }
-                        }
-                        &:nth-child(even) {
-                            background-color: #bac0d1;
-
-                            &> .proof {
-                                border-top: 2px dashed #a0a5b5;
-                            }
+                        &.proof-shown {
+                            box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
                         }
 
+                        &:not(:last-child) {
+                            margin-bottom: 32px;
+                        }
 
 
                         &> .formula {
@@ -344,18 +336,21 @@ html > body {
                             justify-content: space-between;
 
 
+                            & :first-child, .proof {
+                                font-size: 22px;
+                            }
+
                             &> .proof-button {
                                 .sans-serif;
                                 font-size: 20px;
-                                font-weight: 300;
+                                font-weight: 400;
+                                color: #777;
                                 background-color: #fff;
-                                box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
 
                                 display: table;
 
                                 box-sizing: border-box;
-                                width: 120px;
-                                padding: 8px 0;
+                                padding: 8px;
                                 margin-top: 18px;
 
                                 text-align: center;
@@ -363,11 +358,21 @@ html > body {
                                 cursor: pointer;
 
                                 user-select: none;
+
+                                &:before {
+                                    content: '>';
+                                    transform: rotate(90deg);
+                                    display: inline-block;
+                                    margin-right: 8px;
+                                }
+
+                                &.toggled:before {
+                                    transform: rotate(-90deg);
+                                }
                             }
                         }
 
-                        &> .description > :first-child, .proof {
-                            padding: 0 40px;
+                        &> .proof {
                             font-size: 22px;
                         }
                     }

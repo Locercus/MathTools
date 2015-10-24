@@ -227,17 +227,17 @@ function toggleDisplayHard(el) {
                 description.appendChild(descriptionContainer);
 
                 var proofButton = document.createElement('div');
-                proofButton.textContent = 'Show Proof';
+                proofButton.textContent = 'Proof';
                 proofButton.classList.add('proof-button');
                 description.appendChild(proofButton);
 
                 proofButton.addEventListener('click', function() {
                     if (this.classList.contains('toggled')) {
-                        this.textContent = 'Show Proof';
+                        this.parentNode.parentNode.classList.remove('proof-shown');
                         this.classList.remove('toggled');
                     }
                     else {
-                        this.textContent = 'Hide Proof';
+                        this.parentNode.parentNode.classList.add('proof-shown');
                         this.classList.add('toggled');
                     }
 
