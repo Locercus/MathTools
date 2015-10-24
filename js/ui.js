@@ -228,12 +228,19 @@ function toggleDisplayHard(el) {
     function handleFormulaBox(el) {
         var formulaBoxes = el.querySelectorAll(':scope .formulae');
 
+        var QEDString = katex.renderToString('\\blacksquare');
+
         [].forEach.call(formulaBoxes, function(formulaBox) {
             var formulae = formulaBox.querySelectorAll(':scope > div');
 
             [].forEach.call(formulae, function(formula) {
                 var proof = formula.querySelector(':scope > .proof');
                 proof.classList.add('hide-hard');
+
+                var QED = document.createElement('div');
+                QED.classList.add('qed');
+                QED.innerHTML = QEDString;
+                proof.appendChild(QED);
 
                 var description = formula.querySelector(':scope > .description');
 
