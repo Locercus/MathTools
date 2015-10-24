@@ -2,59 +2,59 @@
     <div class="content">
         <h1>Lineære funktioner</h1>
         <p>
-            A linear function is a function of the type $f(x) = mx + c$. Its graph will always be a straight line when drawn in a linear coordinate system. Thus, the <i>absolute</i> growth rates of $x$ and $f$ are proportional: $\Delta f = m \cdot \Delta x$.
+            En lineær funktion er en funktion af typen $f(x) = ax + b$. Dens graf vil altid være en ret linje, hvis tegnet i et lineært koordinatsystem. Altså er de <i>absolutte</i> tilvækster af $x$ og $f$ proportionale: $\Delta f = a \cdot \Delta x$.
         </p>
         <p>
-            Linear functions are used to describe a relationship where $f$ grows by a set amount for every $x$—$f$ and $x$ are linearly proportional (often referred to simply as proportional).
+            Lineære funktioner er brugt til at beskrive en sammenhæng hvor $f$ vokser med en konstant mængde for hver $x$; $f$ og $x$ er lineært proportionale (ofte bare kaldt proportionale).
         </p>
 
-        <h2>Significance of constants</h2>
+        <h2>Betydning af konstanter</h2>
         <dl>
-            <dt>$m$</dt>
+            <dt>$a$</dt>
             <dd>
-                Determines the change of the function for every $x$. Usually limited to $m \neq 0$, as $m = 0$ would result in a horisontal line. When $m > 0$ the graph increases in $f$ for every $x$ whereas it decreases when $m &lt; 0$.
+                Hældningskoefficienten. Bestemmer ændringen i funktionsværdien for hver $x$. Ofte begrænset til $a \neq 0$ eftersom $a = 0$ ville resultere i en horisontal linje. Når $a > 0$ vokser grafen i $f$ for hver $x$ hvorimod den falder når $a &lt; 0$.
             </dd>
-            <dt>$c$</dt>
+            <dt>$b$</dt>
             <dd>
-                The offset on/intersection with the $y$ axis. Dictates the function value when $x = 0$, as $f(x) = m \cdot 0 + c = c$.
+                Forskydningen på/skæringspunktet med $y$-aksen. Dikterer funktionsværdien når $x = 0$ eftersom $f(x) = a \cdot = 0 + b = b$.
             </dd>
         </dl>
         <p>
-            You can try out linear functions with the below interactive illustration to get a visualisation of the significance of each of the constants and their correlation to the resulting graph:
+            Du kan afprøve lineære funktioner med den nedenstående interaktive illustration for at få en visualisering af betydningen af hver af konstanterne og deres korrelation til den resulterende graf:
         </p>
         <div id="linear-graph-visualiser" class="hor-box margin-box">
             <div class="graph"></div>
             <div class="graph-controls">
                 <div class="graph-input" data-name = "m" data-min="-10" data-max="10">
-                    <span>$m = $ <input type="number"></span>
+                    <span>$a = $ <input type="number"></span>
                     <input type="range">
                 </div>
                 <div class="graph-input" data-name = "c" data-min="-5" data-max="5">
-                    <span>$c = $ <input type="number"></span>
+                    <span>$b = $ <input type="number"></span>
                     <input type="range">
                 </div>
             </div>
         </div>
 
-        <h2>Formulae</h2>
+        <h2>Formler</h2>
         <div class="formulae">
             <div>
                 <div class="formula">
                     \[
-                        c = y - mx
+                        b = y - ax
                     \]
                 </div>
                 <div class="description">
                     <p>
-                        You can find the offset $c$ given the slope $m$ and one point on the graph $(x, y)$.
+                        Du kan finde forskydningen $b$ givet hældningskoefficienten og et punkt på grafen $(x, y)$.
                     </p>
                 </div>
                 <div class="proof">
                     \[
                         \begin{array}{rcl}
-                            y     &amp; = &amp; mx + c                    \\[.5em]
-                            &amp; \Updownarrow &amp; \text{Subtract } mx. \\[.5em]
-                            y -mx &amp; = &amp; c                         \\
+                            y     &amp; = &amp; ax + b                     \\[.5em]
+                            &amp; \Updownarrow &amp; \text{Subtraher } ax. \\[.5em]
+                            y -ax &amp; = &amp; b                          \\
                         \end{array}
                     \]
                 </div>
@@ -62,36 +62,36 @@
             <div>
                 <div class="formula">
                     \[
-                        m = \frac{\Delta y}{\Delta x} = \frac{\Delta f}{\Delta x}
+                        a = \frac{\Delta y}{\Delta x} = \frac{\Delta f}{\Delta x}
                     \]
                 </div>
                 <div class="description">
                     <p>
-                        You can find the slope $m$ given the difference between two points on the graph: $\Delta y = y_2 - y_1, \Delta x = x_2 - x_1$.
+                        Du kan finde hældningskoefficienten $a$ givet differencen mellem to punkter på grafen: $\Delta y = y_2 - y_1, \Delta x = x_2 - x_1$.
                     </p>
                 </div>
                 <div class="proof">
                     <p>
-                        We create two equations from the two points $(x_1, y_1)$ and $(x_2, y_2)$:
+                        Vi laver to ligninger udfra de to punkter $(x_1, y_1)$ og $(x_2, y_2)$:
                     </p>
                     <p>
                         \[
-                            y_2 = mx_2 + c \enspace \text{ and } \enspace y_1 = mx_1 + c
+                            y_2 = ax_2 + b \enspace \text{ og } \enspace y_1 = ax_1 + b
                         \]
                     </p>
                     <p>
-                        We subtract the equations (getting rid of $c$ in both, as $c - c = 0$):
+                        Vi subtraherer ligningerne fra hinanden (og skaffer os af med $b$ i begge, eftersom $b - b = 0$):
                     </p>
                     <p>
                         \[
                             \begin{array}{rcl}
-                                y_2 - y_1                   &amp; = &amp; mx_2 - mx_1                 \\[.5em]
-                                &amp; \Updownarrow &amp; \text{Factor in }m.                          \\[.5em]
-                                y_2 - y_2                   &amp; = &amp; m(x_2 - x_1)                \\[.5em]
-                                &amp; \Updownarrow &amp; \text{Divide by }x_2 - x_1.                  \\
-                                \frac{y_2 - y_1}{x_2 - x_1} &amp; = &amp; m                           \\
-                                &amp; \Updownarrow &amp;                                              \\
-                                \frac{\Delta y}{\Delta x}   &amp; = &amp; m
+                                y_2 - y_1                   &amp; = &amp; ax_2 - ax_1                  \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Faktor med }a.                          \\[.5em]
+                                y_2 - y_2                   &amp; = &amp; a(x_2 - x_1)                 \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Divider med }x_2 - x_1.                 \\
+                                \frac{y_2 - y_1}{x_2 - x_1} &amp; = &amp; a                            \\
+                                &amp; \Updownarrow &amp;                                               \\
+                                \frac{\Delta y}{\Delta x}   &amp; = &amp; a
                             \end{array}
                         \]
                     </p>
