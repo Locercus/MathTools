@@ -359,15 +359,46 @@ html > body {
 
                                 user-select: none;
 
-                                &:before {
-                                    content: '>';
-                                    transform: rotate(90deg);
+                                &> .proof-button-icon {
+                                    position: relative;
                                     display: inline-block;
-                                    margin-right: 8px;
+
+                                    width: 1em;
+                                    height: 1em;
+
+                                    opacity: .5;
+
+                                    &:before, &:after {
+                                        content: '';
+                                        position: absolute;
+                                        
+                                        top: 50%;
+                                        left: 50%;
+                                        width: 10px;
+                                        height: 2px;
+
+                                        border-radius: 1px;
+
+                                        background-color: #000;
+
+                                        transform: translate(-90%, 5px) rotate(40deg);
+                                        transform-origin: 100% 50%;
+
+                                        transition: transform .2s cubic-bezier(.2,.3,0,1);
+                                    }
+                                    &:after {
+                                        transform: translate(0, 5px) rotate(-40deg);
+                                        transform-origin:    0 50%;
+                                    }
                                 }
 
-                                &.toggled:before {
-                                    transform: rotate(-90deg);
+                                &.toggled .proof-button-icon {
+                                    &:before {
+                                        transform: translate(-90%, -2px) rotate(-40deg);
+                                    }
+                                    &:after {
+                                        transform: translate(0, -2px) rotate(40deg);
+                                    }
                                 }
                             }
                         }
