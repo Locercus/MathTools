@@ -49,13 +49,15 @@ function toggleDisplayHard(el) {
         return language;
     }
 
-    loadPage = function loadPage(page) {
+    var pageHideTime = 0;
+
+    loadPage = function loadPage(page, instant) {
         var language = getLanguage();
 
         // Check if the page lists have been loaded
         if (!(language in pages && 'en-GB' in pages)) {
             document.addEventListener('pagesReady', function() {
-                loadPage(page);
+                loadPage(page, instant);
             });
             return;
         }
@@ -76,27 +78,38 @@ function toggleDisplayHard(el) {
         // Hide the page content
         hide($('#page-content')[0]);
 
+        pageHideTime = new Date().getTime();
+
         // Get the page HTML
         var request = new XMLHttpRequest();
         request.open('GET', root + 'pages/' + language + '/' + page + '.html');
         request.onload = function() {
             if (this.status >= 200 && this.status < 400) {
-                // Set data-page
-                $('#content')[0].dataset.page = page;
+                var delay = Math.max(new Date().getTime() - pageHideTime + 400, 0);
 
-                var pageEl = $('#page-content')[0];
-                pageEl.innerHTML = this.response;
-                execBodyScripts(pageEl);
-                renderMathInElement(pageEl, {
-                    delimiters: [
-                        { left: "$",  right: "$",  display: false },
-                        { left: "\\[", right: "\\]", display: true  }
-                    ]
-                });
-                handleToC(pageEl);
-                handleFormulaBox(pageEl);
-                handleAnchors(pageEl);
-                showPage();
+                if (instant)
+                    delay = 0;
+
+                var response = this.response;
+
+                setTimeout(function() {
+                    // Set data-page
+                    $('#content')[0].dataset.page = page;
+
+                    var pageEl = $('#page-content')[0];
+                    pageEl.innerHTML = response;
+                    execBodyScripts(pageEl);
+                    renderMathInElement(pageEl, {
+                        delimiters: [
+                            { left: "$",  right: "$",  display: false },
+                            { left: "\\[", right: "\\]", display: true  }
+                        ]
+                    });
+                    handleToC(pageEl);
+                    handleFormulaBox(pageEl);
+                    handleAnchors(pageEl);
+                    showPage();
+                }, delay);
 
                 // Set title
                 $('title')[0].textContent = data.name + " – Jon's Math Tools";
@@ -315,7 +328,7 @@ function toggleDisplayHard(el) {
     // Load page
     if (page === '')
         page = 'home';
-    loadPage(page);
+    loadPage(page, true);
 
 
     // Global listeners
