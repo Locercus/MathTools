@@ -1,0 +1,6 @@
+[submodule "lib/KaTeX"]
+	path = lib/KaTeX
+	url = https://github.com/Khan/KaTeX.git
+[submodule "lib/javascript-cas"]
+	path = lib/javascript-cas
+	url = https://github.com/aantthony/javascript-cas.git
