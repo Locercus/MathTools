@@ -103,8 +103,8 @@
 </div>
 <script>
     (function() {
-        var linearGraphMLongString  = katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}');
-        var linearGraphMShortString = katex.renderToString('m');
+        var linearGraphMLongString  = katex.renderToString('\\begin{array}{c} \\uparrow \\\\ a \\\\ \\downarrow \\end{array}');
+        var linearGraphMShortString = katex.renderToString('a');
 
         var linearGraph = new InteractiveGraph({
             plotOptions: {
@@ -115,8 +115,8 @@
                 width:  650,
                 height: 400,
                 disableZoom: true,
-                xLabel: 'x axis',
-                yLabel: 'y axis',
+                xLabel: 'x-akse',
+                yLabel: 'y-akse',
                 xDomain: [-2, 6],
                 yDomain: [-2, 6]
             },
@@ -161,7 +161,7 @@
                 var cText = document.createElement('div');
                 cText.classList.add('cText');
                 cText.classList.add('v-center');
-                cText.innerHTML = katex.renderToString('(0, c)');
+                cText.innerHTML = katex.renderToString('(0, b)');
                 cText.style.left = coords.x(0) - 55 + 'px';
                 htmlOverlay.appendChild(cText);
 
