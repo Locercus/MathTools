@@ -102,7 +102,8 @@ function toggleDisplayHard(el) {
                 $('title')[0].textContent = data.name + " – Jon's Math Tools";
 
                 // Add to history
-                history.pushState({page: page}, '', page);
+                if (page !== 'home')
+                    history.pushState({page: page}, '', page);
             }
             else
                 vex.dialog.alert({
