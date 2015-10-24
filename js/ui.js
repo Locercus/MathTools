@@ -1,3 +1,5 @@
+vex.defaultOptions.className = 'vex-theme-os';
+
 var loadPage;
 var showPage;
 var getPages;
@@ -48,6 +50,8 @@ function toggleDisplayHard(el) {
     }
 
     loadPage = function loadPage(page) {
+        var language = getLanguage();
+
         // Check if the page lists have been loaded
         if (!(language in pages && 'en-GB' in pages)) {
             document.addEventListener('pagesReady', function() {
@@ -57,10 +61,12 @@ function toggleDisplayHard(el) {
         }
 
         // Check if the page even exists
-        if (page in pages[language])
+        if (page in pages[language]) 
             var data = pages[language][page];
-        else if(page in pages['en-GB'])
+        else if(page in pages['en-GB']) {
+            var language = 'en-GB';
             var data = pages['en-GB'][page];
+        }
         else
             return;
 
@@ -96,7 +102,9 @@ function toggleDisplayHard(el) {
                 $('title')[0].textContent = data.name + " – Jon's Math Tools";
             }
             else
-                alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
+                vex.dialog.alert({
+                    message: 'Something went wrong. Please try again later<br/>Error: ' + this.status
+                });
 
             // Hide the loading spinner
             hide($('#page-spinner')[0]);
@@ -252,48 +260,53 @@ function toggleDisplayHard(el) {
     history.replaceState({page: pageName}, '', page);
 
 
+    function loadPageListLanguage(lang) {
+        return new Promise(function(resolve, reject) {
+            var request = new XMLHttpRequest();
+            request.open('GET', root + 'data/lang/' + lang + '/pages.json', true);
+            request.onload = function() {
+                if (this.status >= 200 && this.status < 400) {
+                    resolve(JSON.parse(this.response));
+                }
+                else {
+                    vex.dialog.alert({
+                        message: 'Something went wrong. Please try again later<br/>Error: ' + this.status
+                    });
+                    reject();
+                }
+            };
+            request.send();
+        });
+    }
+
+
 
     // Obtain the list of pages for the current language and en-GB
     (function loadPageList() {
         var e = new CustomEvent('pagesReady');
 
         if (language != 'en-GB') {
-            var english = new XMLHttpRequest();
-            english.open('GET', root + 'data/lang/en-GB/pages.json', true);
-            english.onload = function() {
-                if (this.status >= 200 && this.status < 400) {
-                    var data = JSON.parse(this.response);
-                    pages['en-GB'] = data;
-
-                    if (language in pages)
-                        document.dispatchEvent(e);
-                }
-                else
-                    alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
-            };
-            english.send();
-        }
-
-        var langPages = new XMLHttpRequest();
-        langPages.open('GET', root + 'data/lang/' + language + '/pages.json', true);
-        langPages.onload = function() {
-            if (this.status >= 200 && this.status < 400) {
-                var data = JSON.parse(this.response);
-                pages[language] = data;
+            loadPageListLanguage('en-GB').then(function(data) {
+                pages['en-GB'] = data;
 
                 if ('en-GB' in pages || language === 'en-GB')
                     document.dispatchEvent(e);
-            }
-            else
-                alert('Something went wrong. Please try again later (Error: ' + this.status + ')');
-        };
-        langPages.send();
+            });
+        }
+
+        loadPageListLanguage(language).then(function(data) {
+            pages[language] = data;
+
+            if ('en-GB' in pages || language === 'en-GB')
+                document.dispatchEvent(e);
+        });
     })();
 
     // Load page
     if (page === '')
         page = 'home';
     loadPage(page);
+
 
     // Global listeners
 
@@ -305,4 +318,76 @@ function toggleDisplayHard(el) {
         if (event.state !== null)
             loadPage(event.state.page);
     }
+
+
+    var languageSelectContainer = '';
+    var languages = null;
+    var languageRequest = new XMLHttpRequest();
+    languageRequest.open('GET', root + '/data/languages.json', true);
+    languageRequest.onload = function() {
+        if (this.status >= 200 && this.status < 400) {
+            languages = JSON.parse(this.response);
+
+            var languageSelect = document.createElement('select');
+            languageSelect.name = 'language';
+
+            Object.keys(languages).forEach(function(langId, index) {
+                var option = document.createElement('option');
+                option.value = langId;
+                option.innerHTML = languages[langId];
+
+                languageSelect.appendChild(option)
+
+                if (langId === getLanguage())
+                    languageSelect.selectedIndex = index;
+            });
+
+            languageSelectContainer = document.createElement('div');
+            languageSelectContainer.classList.add('select-style');
+            languageSelectContainer.appendChild(languageSelect);
+        }
+        else
+            vex.dialog.alert({
+                message: 'Something went wrong. Please try again later<br/>Error: ' + this.status
+            });
+    }
+    languageRequest.send();
+
+
+    $('#language-button')[0].addEventListener('click', function languagebuttonclick() {
+        vex.dialog.open({
+            message: 'Change language',
+            input: languageSelectContainer,
+            buttons: [
+                jQuery.extend({}, vex.dialog.buttons.YES, {
+                    text: 'Change language'
+                }),
+                jQuery.extend({}, vex.dialog.buttons.NO, {
+                    text: 'Cancel'
+                })
+            ],
+            callback: function(data) {
+                if (data === false)
+                    return;
+
+                if (!(data.language in getPages())) {
+                    loadPageListLanguage(data.language).then(function(newPages) {
+                        pages[data.language] = newPages;
+
+                        language = data.language;
+                        loadPage($('#content')[0].dataset.page);
+                    });
+                }
+                else {
+                    language = data.language;
+                    loadPage($('#content')[0].dataset.page);
+                }
+            }
+        });
+    });
+
+
+    $('#home-button')[0].addEventListener('click', function homebuttonclick() {
+        loadPage('home');
+    });
 })();

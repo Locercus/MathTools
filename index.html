@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Home – Jon's Math Tools</title>
+        <link rel="stylesheet" href="lib/vex-2.3.2/css/vex.css">
+        <link rel="stylesheet" href="lib/vex-2.3.2/css/vex-theme-os.css">
         <link rel="stylesheet" href="lib/KaTeX/katex.min.css">
         <link rel="stylesheet" href="style.css">
         <meta name="viewport" content="width=1000, user-scalable=no">
@@ -23,6 +25,12 @@
                 Jon's Math Tools
             </div>
             <div>
+                <div id="home-button" class="menu-button" title="Home">
+                    <!-- home.svg -->
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path d="M5,12 L3,12 L12,3 L21,12 L19,12 L19,21 L14,21 L14,16 L10,16 L10,21 L5,21 L5,12 Z" stroke="#000000" stroke-width="2px" stroke-linejoin="round" fill="none"></path>
+                    </svg>
+                </div>
                 <div id="searchbar">
                     <div>
                         <!-- search.svg -->
@@ -34,6 +42,13 @@
                         </svg>
                     </div>
                     <input type="search" placeholder="Search" autofocus>
+                </div>
+                <div id="language-button" class="menu-button" title="Language">
+                    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width="24" height="24" version="1.1">
+                        <g transform="translate(-17.3098074,-26.1545981)">
+                            <path d="m 23.247307,26.154598 c 1.770823,2.083364 3.229155,4.270862 4.375,6.5625 l -2.96875,1.71875 c -1.041675,-2.29164 -2.447924,-4.479138 -4.21875,-6.5625 l 2.8125,-1.71875 m -5.9375,11.5625 8.4375,0 0,18.125 3.28125,-3.59375 2.03125,1.875 c -1.458348,1.979169 -3.437513,3.958334 -5.9375,5.9375 l -2.34375,-2.03125 0,-17.5 -5.46875,0 0,-2.8125 m 14.53125,-2.96875 5,0 0.9375,-4.21875 -7.34375,0 0,-2.8125 22.03125,0 0,2.8125 -11.5625,0 -0.9375,4.21875 9.53125,0 0,8.125 3.75,0 0,2.8125 -23.4375,0 0,-2.8125 5.15625,0 1.09375,-5.3125 -4.21875,0 0,-2.8125 m 6.25,8.125 8.28125,0 0,-5.3125 -7.1875,0 -1.09375,5.3125 m 13.28125,5.625 0,13.59375 -3.125,0 0,-2.03125 -12.96875,0 0,2.03125 -3.125,0 0,-13.59375 19.21875,0 m -16.09375,8.75 12.96875,0 0,-5.9375 -12.96875,0 0,5.9375"/>
+                        </g>
+                    </svg>
                 </div>
             </div>
         </section>
@@ -50,6 +65,9 @@
         <script src="lib/KaTeX/contrib/auto-render.min.js"></script>
         <script src="lib/d3/d3.min.js"></script>
         <script src="lib/function-plot-1.12.2/dist/function-plot.js"></script>
+        <script src="lib/jquery-1.11.3.min.js"></script> <!-- We don't actually use jQuery, but vex needs it -->
+        <script>$.noConflict()</script>
+        <script src="lib/vex-2.3.2/js/vex.combined.min.js"></script>
         <script src="js/interactive_graph.js"></script>
         <script src="js/ui.js"></script>
     </body>
