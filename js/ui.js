@@ -100,6 +100,9 @@ function toggleDisplayHard(el) {
 
                 // Set title
                 $('title')[0].textContent = data.name + " – Jon's Math Tools";
+
+                // Add to history
+                history.pushState({page: page}, '', page);
             }
             else
                 vex.dialog.alert({
@@ -148,7 +151,6 @@ function toggleDisplayHard(el) {
 
             if (hash === undefined) {
                 loadPage(uri);
-                history.pushState({page: uri}, '', uri);
             }
             else {
                 if(hash !== '')
