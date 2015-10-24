@@ -245,9 +245,14 @@ function toggleDisplayHard(el) {
                 description.appendChild(descriptionContainer);
 
                 var proofButton = document.createElement('div');
-                proofButton.textContent = 'Proof';
                 proofButton.classList.add('proof-button');
                 description.appendChild(proofButton);
+
+                var proofButtonIcon = document.createElement('span');
+                proofButtonIcon.classList.add('proof-button-icon');
+                proofButton.appendChild(proofButtonIcon);
+
+                proofButton.appendChild(new Text("Proof"));
 
                 proofButton.addEventListener('click', function() {
                     if (this.classList.contains('toggled')) {
