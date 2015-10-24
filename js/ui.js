@@ -103,8 +103,9 @@ function toggleDisplayHard(el) {
 
                 // Add to history
                 if (page === 'home')
-                    page = '';
-                history.pushState({page: page}, '', page);
+                    history.pushState({page: "home"}, '', '.');
+                else
+                    history.pushState({page: page}, '', page);
             }
             else
                 vex.dialog.alert({
