@@ -249,7 +249,7 @@ function toggleDisplayHard(el) {
 
 
 
-    var language = 'en-GB';
+    var language = localStorage.language || 'en-GB';
     root = parseUri(document.currentScript.src).directory + '../';
     var pages = {};
 
@@ -369,6 +369,8 @@ function toggleDisplayHard(el) {
             callback: function(data) {
                 if (data === false)
                     return;
+
+                localStorage.language = data.language;
 
                 if (!(data.language in getPages())) {
                     loadPageListLanguage(data.language).then(function(newPages) {
