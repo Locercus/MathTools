@@ -381,7 +381,7 @@ function toggleDisplayHard(el) {
     window.onpopstate = function onpopstate(event) {
         if (event.state !== null)
             loadPage(event.state.page);
-    }
+    };
 
 
     var languageSelectContainer = '';
@@ -414,7 +414,7 @@ function toggleDisplayHard(el) {
             vex.dialog.alert({
                 message: 'Something went wrong. Please try again later<br/>Error: ' + this.status
             });
-    }
+    };
     languageRequest.send();
 
 
