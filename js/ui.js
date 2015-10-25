@@ -285,7 +285,9 @@ function toggleDisplayHard(el) {
         authors.innerHTML = data.authors.join(', ');
 
 
-        el = el.querySelector(':scope > .page > .content');
+        var el2 = el.querySelector(':scope > .page > .content');
+        if (el2 !== null)
+            el = el2;
         var h1 = el.querySelector(':scope > h1');
 
         if (h1 === null)
