@@ -108,7 +108,8 @@ function toggleDisplayHard(el) {
                     handleToC(pageEl);
                     handleFormulaBox(pageEl);
                     handleAnchors(pageEl);
-                    handleAuthors(pageEl, data);
+                    if (page !== 'home')
+                        handleAuthors(pageEl, data);
                     showPage();
                 }, delay);
 
