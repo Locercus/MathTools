@@ -66,7 +66,7 @@ function toggleDisplayHard(el) {
         if (page in pages[language]) 
             var data = pages[language][page];
         else if(page in pages['en-GB']) {
-            var language = 'en-GB';
+            language = 'en-GB';
             var data = pages['en-GB'][page];
         }
         else
@@ -108,6 +108,7 @@ function toggleDisplayHard(el) {
                     handleToC(pageEl);
                     handleFormulaBox(pageEl);
                     handleAnchors(pageEl);
+                    handleAuthors(pageEl, data);
                     showPage();
                 }, delay);
 
@@ -275,6 +276,22 @@ function toggleDisplayHard(el) {
                 });
             });
         });
+    }
+
+    function handleAuthors(el, data) {
+        var authors = document.createElement('div');
+        authors.classList.add('authors');
+
+        authors.innerHTML = data.authors.join(', ');
+
+
+        el = el.querySelector(':scope > .page > .content');
+        var h1 = el.querySelector(':scope > h1');
+
+        if (h1 === null)
+            el.insertBefore(authors, el.firstChild);
+        else
+            el.insertBefore(authors, h1.nextSibling);
     }
 
 

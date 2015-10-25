@@ -240,6 +240,25 @@ html > body {
                     font-size: 22px;
                 }
 
+                & .authors {
+                    &:before {
+                        content: 'By ';
+
+                    }
+                    &:after {
+                        content: '.';
+                    }
+
+                    &:before, :after, > a {
+                        color: #555;
+                        font-style: italic;
+                    }
+
+                    &> a:hover {
+                        text-decoration: none;
+                    }
+                }
+
                 & .graph {
                     display: flex;
                     justify-content: center;
@@ -493,6 +512,8 @@ html > body {
         &> :first-child {
             padding-top: 16px;
             border-top: 2px dashed lightgray;
+
+            margin-bottom: 16px;
         }
 
         & a {

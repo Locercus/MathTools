@@ -1,6 +1,9 @@
 {
     "linearfunctions": {
         "name": "Lineære funktioner",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>"
+        ],
         "tags": [
             "funktion",
             "lineær",

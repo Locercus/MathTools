@@ -1,6 +1,9 @@
 {
     "home": {
         "name": "Home",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>"
+        ],
         "tags": [
             "home",
             "frontpage",
@@ -10,6 +13,9 @@
     },
     "linearfunctions": {
         "name": "Linear functions",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>"
+        ],
         "tags": [
             "function",
             "linear",
