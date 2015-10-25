@@ -1,4 +1,16 @@
 {
+    "home": {
+        "name": "Hjem",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>"
+        ],
+        "tags": [
+            "hjem",
+            "forside",
+            "indeks",
+            "startside"
+        ]
+    },
     "linearfunctions": {
         "name": "Lineære funktioner",
         "authors": [

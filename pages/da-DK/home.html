@@ -1,0 +1,46 @@
+<div class="fullpage">
+    <h1>Sideoversigt</h1>
+    <ul id="site-index"></ul>
+</div>
+<script>
+    (function() {
+        var pages = getPages();
+        var language = getLanguage();
+        var pageNames = Object.keys(pages['en-GB']);
+        var siteIndex = $('#site-index')[0];
+
+        var siteIndexItems = [];
+
+        pageNames.forEach(function(page) {
+            var pageName;
+
+            if(page in pages[language])
+                pageName = pages[language][page].name;
+            else
+                pageName = pages['en-GB'][page].name;
+
+            siteIndexItems.push({name: page, displayName: pageName});
+        });
+
+        siteIndexItems.sort(function(a, b) {
+            return a.displayName - b.displayName;
+        });
+
+        siteIndexItems.forEach(function(page) {
+            var li = document.createElement('li');
+            var a  = document.createElement('a');
+
+            a.textContent = page.displayName;
+
+            if(page.name === 'home') {
+                li.classList.add('active');
+                a.href = '.'
+            }
+            else
+                a.href = page.name;
+
+            li.appendChild(a);
+            siteIndex.appendChild(li);
+        });
+    })();
+</script>
