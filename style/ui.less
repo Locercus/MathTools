@@ -482,7 +482,6 @@ html > body {
 
     &> #footer {
         width: 100%;
-        padding-top: 16px;
         margin: 32px 0 16px;
 
         display: flex;
@@ -492,10 +491,13 @@ html > body {
 
         text-align: center;
 
-        border-top: 2px dashed lightgray;
-
         .serif;
         font-size: 18px;
+
+        &> :first-child {
+            padding-top: 16px;
+            border-top: 2px dashed lightgray;
+        }
 
         & a {
             color: #000;
