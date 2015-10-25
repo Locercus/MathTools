@@ -5,6 +5,7 @@ var showPage;
 var getPages;
 var getLanguage;
 var root;
+var scrollToTop;
 
 function show(el) {
     el.classList.add('show');
@@ -150,6 +151,19 @@ function toggleDisplayHard(el) {
         }
     };
 
+    var scrollToTopTimeout;
+    scrollToTop = function scrollToTop() {
+        if (document.body.scrollTop !== 0 || document.documentElement.scrollTop !== 0) {
+            window.scrollBy(0, -50);
+
+            scrollToTopTimeout = setTimeout(function() {
+                scrollToTop();
+            }, 10);
+        }
+        else
+            clearTimeout(scrollToTopTimeout);
+    };
+
     function handleAnchors(el) {
         var anchors = el.querySelectorAll(':scope a');
 
@@ -169,6 +183,7 @@ function toggleDisplayHard(el) {
 
             if (hash === undefined) {
                 loadPage(uri);
+                scrollToTop();
             }
             else {
                 if(hash !== '')
