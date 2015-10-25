@@ -1,0 +1,251 @@
+<!-- Translated from English: 80709ed7acb33fd885c1d97e403653dd14ec623d -->
+<div class="page">
+    <div class="content">
+        <h1>Lineare Funktionen</h1>
+        <p>
+            Eine lineare Funktion hat die Formel $f(x) = mx + c$, und dessen Graph ist immer eine Gerade im linearen Koordinatensystem. Somit ist die <i>absolute</i> Wachstumsrate von $x$ und $f$ proportional: $\Delta f = m \cdot \Delta x$
+        </p>
+        <p>
+            Lineare Funktionen werden benutzt um ein Verhältnis darzustellen, wo $f$ bei jedem $x$ um eine Konstante wächst; $f$ und $x$ sind linear proportional (oft einfach nur proportional genannt).
+        </p>
+
+        <h2>Bedeutung der Konstanten</h2>
+        <dl>
+            <dt>$m$</dt>
+            <dd>
+                Die Steigung. Bestimmt das Wachstum der Funktion bei jedem $x$. Normalerweise ist $m \neq 0$, da $m = 0$ in einer horizontalen Linie resultieren würde. Wenn $m > 0$ ist, dann steigt $f$ bei jedem $x$, wenn aber $m &lt; 0$ ist, dann sinkt $f$ bei jedem $x$.
+            </dd>
+            <dt>$c$</dt>
+            <dd>
+                Der $y$-Achsenabschnitt. Bestimmt den Wert der Funktion bei $x = 0$, da $f(0) = m \cdot 0 + c = c$.
+            </dd>
+        </dl>
+        <p>
+            Hier ist eine interaktive Illustration einer linearen Funktion, damit die Bedeutung der Konstanten und dessen Effekt auf den Graphen visualisiert werden kann:
+        </p>
+        <div id="linear-graph-visualiser" class="hor-box margin-box">
+            <div class="graph"></div>
+            <div class="graph-controls">
+                <div class="graph-input" data-name = "m" data-min="-10" data-max="10">
+                    <span>$m = $ <input type="number"></span>
+                    <input type="range">
+                </div>
+                <div class="graph-input" data-name = "c" data-min="-5" data-max="5">
+                    <span>$c = $ <input type="number"></span>
+                    <input type="range">
+                </div>
+            </div>
+        </div>
+
+        <h2>Formeln</h2>
+        <div class="formulae">
+            <div>
+                <div class="formula">
+                    \[
+                        c = y - mx
+                    \]
+                </div>
+                <div class="description">
+                    <p>
+                        Der $y$-Achsenabschnitt kann mit der Steigung $m$ und einem Punkt auf dem Graphen $(x, y)$ bestimmt werden.
+                    </p>
+                </div>
+                <div class="proof">
+                    \[
+                        \begin{array}{rcl}
+                            y     &amp; = &amp; mx + c      \\[.5em]
+                            &amp; \Updownarrow &amp; -mx    \\[.5em]
+                            y -mx &amp; = &amp; c           \\
+                        \end{array}
+                    \]
+                </div>
+            </div>
+            <div>
+                <div class="formula">
+                    \[
+                        m = \frac{\Delta y}{\Delta x} = \frac{\Delta f}{\Delta x}
+                    \]
+                </div>
+                <div class="description">
+                    <p>
+                        Die Steigung kann mit der Differenz von zwei Punkten auf dem Graphen bestimmt werden: $\Delta y = y_2 - y_1, \Delta x = x_2 - x_1$.
+                    </p>
+                </div>
+                <div class="proof">
+                    <p>
+                        Zwei Gleichungen werden mit den zwei Punkten $(x_1, y_1)$ und $(x_2, y_2)$ aufgestellt:
+                    </p>
+                    <p>
+                        \[
+                            y_2 = mx_2 + c \enspace \text{ und } \enspace y_1 = mx_1 + c
+                        \]
+                    </p>
+                    <p>
+                        Die zwei Gleichungen werden voneinander subtrahiert (somit wird $c$ von beiden entfernt, da $c - c = 0$):
+                    </p>
+                    <p>
+                        \[
+                            \begin{array}{rcl}
+                                y_2 - y_1                   &amp; = &amp; mx_2 - mx_1                 \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Mit } m \text{ Ausklammern}            \\[.5em]
+                                y_2 - y_2                   &amp; = &amp; m(x_2 - x_1)                \\[.5em]
+                                &amp; \Updownarrow &amp; \div (x_2 - x_1)                             \\
+                                \frac{y_2 - y_1}{x_2 - x_1} &amp; = &amp; m                           \\
+                                &amp; \Updownarrow &amp;                                              \\
+                                \frac{\Delta y}{\Delta x}   &amp; = &amp; m
+                            \end{array}
+                        \]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toc"></div>
+</div>
+<script>
+    (function() {
+        var linearGraphMLongString  = katex.renderToString('\\begin{array}{c} \\uparrow \\\\ m \\\\ \\downarrow \\end{array}');
+        var linearGraphMShortString = katex.renderToString('m');
+
+        var linearGraph = new InteractiveGraph({
+            plotOptions: {
+                target: "#linear-graph-visualiser > .graph",
+                data: [{
+                    fn: 'x + 2'
+                }],
+                width:  650,
+                height: 400,
+                disableZoom: true,
+                xLabel: 'x axis',
+                yLabel: 'y axis',
+                xDomain: [-2, 6],
+                yDomain: [-2, 6]
+            },
+            defaultValues: {
+                m: 1,
+                c: 2
+            },
+            inputSelector: '#linear-graph-visualiser > .graph-controls > .graph-input',
+            fn: '%mx + %c',
+
+
+            initialDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size) {
+                // Slope
+                var gSlope = document.createSVGElement('g');
+                var slope  = document.createSVGElement('path');
+                slope.classList.add('drawSlope');
+                slope.setAttribute('stroke',           'black');
+                slope.setAttribute('opacity',          .75);
+                slope.setAttribute('stroke-dasharray', '5,5');
+                slope.setAttribute('fill',             'none');
+
+                gSlope.appendChild(slope);
+                canvas.appendChild(gSlope);
+
+
+                // m x text
+                var mXText = document.createElement('div');
+                mXText.classList.add('mXText');
+                mXText.classList.add('h-center');
+                mXText.innerHTML = katex.renderToString('\\leftarrow 1 \\rightarrow');
+                htmlOverlay.appendChild(mXText);
+
+
+                // m y text
+                var mYText = document.createElement('div');
+                mYText.classList.add('mYText');
+                mYText.classList.add('v-center');
+                htmlOverlay.appendChild(mYText);
+
+
+                // c text
+                var cText = document.createElement('div');
+                cText.classList.add('cText');
+                cText.classList.add('v-center');
+                cText.innerHTML = katex.renderToString('(0, c)');
+                cText.style.left = coords.x(0) - 55 + 'px';
+                htmlOverlay.appendChild(cText);
+
+                // c dot
+                var cDot = document.createSVGElement('circle');
+                cDot.classList.add('cDot');
+                cDot.setAttribute('cx', coords.x(0));
+                cDot.setAttribute('r', 3);
+                canvas.appendChild(cDot);
+            },
+
+
+            postDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size) {
+                var fn = function(x) {
+                    return values.m * x + values.c;
+                };
+                var fnReverse = function(y) {
+                    return (y - values.c) / values.m;
+                };
+
+
+                // Slope
+                var slope = canvas.querySelector(':scope .drawSlope');
+
+                var y1Slope = 2;
+                var x1Slope = fnReverse(y1Slope);
+
+                var x2Slope = x1Slope + 1;
+                var y2Slope = y1Slope;
+
+                var x3Slope = x2Slope;
+                var y3Slope = fn(x2Slope);
+                slope.setAttribute('d', line([ [x1Slope, y1Slope], [x2Slope, y2Slope], [x3Slope, y3Slope] ]));
+
+
+                // m x text
+                var mXText = htmlOverlay.querySelector(':scope .mXText');
+
+                var xmXText = x1Slope;
+                var ymXText = y1Slope;
+
+                var ymXTextCoords = coords.y(ymXText);
+                if (values.m > 0)
+                    ymXTextCoords -= 25;
+
+                mXText.style.left   = coords.x(xmXText) + 'px';
+                mXText.style.bottom = ymXTextCoords     + 'px';
+                mXText.style.width  = size.w(1)         + 'px';
+
+
+                // m y text
+                var mYText = htmlOverlay.querySelector(':scope .mYText');
+
+                var xmYText = x3Slope;
+                var ymYText = y2Slope;
+                if (values.m < 0)
+                    ymYText -= values.m;
+
+                var xmYTextCoords = coords.x(xmYText);
+
+                if (Math.abs(values.m) < 1.5) {
+                    mYText.innerHTML = linearGraphMShortString;
+                    xmYTextCoords += 10;
+                }
+                else
+                    mYText.innerHTML = linearGraphMLongString;
+
+                mYText.style.left   = xmYTextCoords     + 'px';
+                mYText.style.bottom = coords.y(ymYText) + 'px';
+                mYText.style.height = size.h(values.m)  + 'px';
+
+
+                // c text
+                var cText = htmlOverlay.querySelector(':scope .cText');
+
+                cText.style.top = coords.y(values.c) - 10 + 'px';
+
+
+                // c dot
+                var cDot = canvas.querySelector(':scope .cDot');
+
+                cDot.setAttribute('cy', coords.y(values.c));
+            }
+        });
+    })();
+</script>

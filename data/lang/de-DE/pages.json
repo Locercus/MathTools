@@ -1,0 +1,31 @@
+{
+    "home": {
+        "name": "Startseite",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>",
+            "<a href=\"//github.com/Creeper32605\">Creeps</a>"
+        ],
+        "tags": [
+            "start",
+            "startseite",
+            "index",
+            "inhaltsverzeichnis",
+            "alle",
+            "alles"
+        ]
+    },
+    "linearfunctions": {
+        "name": "Lineare Funktionen",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>",
+            "<a href=\"//github.com/Creeper32605\">Creeps</a>"
+        ],
+        "tags": [
+            "funktion",
+            "linear",
+            "linie",
+            "gerade",
+            "proportional"
+        ]
+    }
+}
