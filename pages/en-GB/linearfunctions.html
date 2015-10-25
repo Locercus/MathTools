@@ -184,7 +184,7 @@
 
 
                 // Slope
-                var slope = canvas.querySelector(':scope > .drawSlope');
+                var slope = canvas.querySelector(':scope .drawSlope');
 
                 var y1Slope = 2;
                 var x1Slope = fnReverse(y1Slope);
@@ -198,7 +198,7 @@
 
 
                 // m x text
-                var mXText = htmlOverlay.querySelector(':scope > .mXText');
+                var mXText = htmlOverlay.querySelector(':scope .mXText');
 
                 var xmXText = x1Slope;
                 var ymXText = y1Slope;
@@ -213,7 +213,7 @@
 
 
                 // m y text
-                var mYText = htmlOverlay.querySelector(':scope > .mYText');
+                var mYText = htmlOverlay.querySelector(':scope .mYText');
 
                 var xmYText = x3Slope;
                 var ymYText = y2Slope;
@@ -235,13 +235,13 @@
 
 
                 // c text
-                var cText = htmlOverlay.querySelector(':scope > .cText');
+                var cText = htmlOverlay.querySelector(':scope .cText');
 
                 cText.style.top = coords.y(values.c) - 10 + 'px';
 
 
                 // c dot
-                var cDot = canvas.querySelector(':scope > .cDot');
+                var cDot = canvas.querySelector(':scope .cDot');
 
                 cDot.setAttribute('cy', coords.y(values.c));
             }
