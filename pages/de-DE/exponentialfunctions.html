@@ -1,0 +1,336 @@
+<div class="page">
+    <div class="content">
+        <h1>Exponentielle Funktionen</h1>
+        <p>
+            Eine Exponentialfunktion ist eine Funktion des Typs $f(x) = a \cdot b^x$. Der Graph ist eine Kurve in einem linearen Koordinatensystem und eine Gerade in einem semi-logarithmischen Koordinatensystem. Somit resultiert ein <em>absolutes</em> Wachstum des $x$-Wertes in einem dem entsprechendem <em>relativen</em> Wachstum des $y$-Wertes: $y_2 = y_1 \cdot b^{\Delta x}$.
+        </p>
+        <p>
+            Exponentielle Funktionen werden benutzt, um ein Verhältnis, wo $f$ sich bei jedem $x$ um einen relativen Wert (einem prozentualen Anteil) ändert; $f$ und $x$ sind also exponentiell proportional.
+        </p>
+        <p>
+            Der Graph einer Exponentialfunktion ist immer oberhalb von der $x$-Achse, da $a > 0$ und $b > 0$. Also wird der Graph auch nie $f(x) = 0$ haben, trotz Funktionen mit $b &lt; 1$ da die Änderung relativ ist (anders als bei <a href="linearfunctions">linearen Funktionen</a>, wo die Wachstumsrate konstant ist). Der Graph schmiegt sich der $x$-Achse an, aber wird nie $0$, da $\frac{n}{2} \neq 0$ wenn $n \neq 0$. Das wird auch <em>Asymptote</em> genannt.
+        </p>
+
+        <h2>Bedeutung der Konstanten</h2>
+        <dl>
+            <dt>$a$</dt>
+            <dd>
+                Der $y$-Achsenabschnitt. Bestimmt den Funktionswert bei $x = 0$, da $f(0) = a \cdot b^0 = a \cdot 1 = a$. Beschränkt auf $a > 0$.
+            </dd>
+            <dt>$b$</dt>
+            <dd>
+                Das relative Wachstum von $f$ bei jedem $x$. Beschränkt auf $b \in \left]0; 1\right[\ \cup\ \left]1; \infty\right[$. Die Funktion steigt an, wenn $b > 1$ ist und sinkt, wenn $b &lt; 1$. Ein Wachstum von $20\%$ bei jedem $x$ würde $b = 1.2$ sein, wobei ein Sinken von $20\%$ $b = (1 - 0.2) = 0.8$ sein würde.
+            </dd>
+        </dl>
+
+        <h2>Verdoppeln und Halbieren der Konstanten</h2>
+        <p>
+            Bei Exponentialfunktionen, wird die sogenannte <em>doppelnde Konstante</em> $T_2$ und die <em>halbierende Konstante</em> $T_{\frac{1}{2}}$ benutzt, um das absolute Wachstum in $x$, das nötig ist, damit $f$ sich verdoppelt beziehungsweise halbiert, anzugeben.
+        </p>
+        <p>
+            Allgemein ist das absolute Wachstum für $x$, damit $y$ $n$-Fach ansteigt, $T_n$.
+        </p>
+        <p>
+            Die Formeln für die verdoppelnen und halbierenden Konstanten und die allgemeine Definition sind bei den <a href="#formulae">Formeln</a>.
+        </p>
+        <p>
+            Hier ist eine interaktive Illustration einer Exponentialfunktion, damit die Bedeutung der Konstanten und dessen Effekt auf den Graphen visualisiert werden kann:
+        </p>
+        <div id="exponential-graph-visualiser" class="hor-box margin-box">
+            <div class="graph"></div>
+            <div class="graph-controls">
+                <div class="graph-input" data-name = "a" data-min="0.01" data-max="10">
+                    <span>$a = $ <input type="number"></span>
+                    <input type="range">
+                </div>
+                <div class="graph-input" data-name = "b" data-min="0.01" data-max="5">
+                    <span>$b = $ <input type="number"></span>
+                    <input type="range">
+                </div>
+            </div>
+        </div>
+
+        <h2 id="formulae">Formulae</h2>
+        <div class="formulae">
+            <div>
+                <div class="formula">
+                    \[
+                        b = \sqrt[\Delta x]{\frac{y_2}{y_1}}
+                    \]
+                </div>
+                <div class="description">
+                    <p>
+                        Die relative Änderung $b$ von zwei Koordinaten $(x_1, y_1)$ und $(x_2, y_2)$ auf dem Graphen kann hiermit ermittelt werden.
+                    </p>
+                </div>
+                <div class="proof">
+                    <p>
+                        Zwei Gleichungen mit den zwei Punkten werden aufgestellt:
+                    </p>
+                    <p>
+                        \[
+                            y_2 = a \cdot b^{x_2} \enspace \text{ und } \enspace y_1 = a \cdot b^{x_1}
+                        \]
+                    </p>
+                    <p>
+                        Die erste Gleichung wird durch die Zweite dividiert:
+                    </p>
+                    <p>
+                        \[
+                            \begin{array}{rcl}
+                                \frac{y_2}{y_1}                  &amp; = &amp; \frac{a \cdot b^{x_2}}{a \cdot b^{x_1}}   \\[1em]
+                                &amp; \Updownarrow &amp; \text{Reduzieren von }a                                         \\[.5em]
+                                \frac{y_2}{y_1}                  &amp; = &amp; \frac{b^{x_2}}{b^{x_1}}                   \\[1em]
+                                &amp; \Updownarrow &amp; \text{Potenzgesetz*}                                            \\[.5em]
+                                \frac{y_2}{y_1}                  &amp; = &amp; b^{x_2 - x_1}                             \\[.5em]
+                                &amp; \Updownarrow &amp;                                                                 \\[.5em]
+                                \frac{y_2}{y_1}                  &amp; = &amp; b^{\Delta x}                              \\[1em]
+                                &amp; \Updownarrow &amp; \sqrt[\Delta x]{}                                               \\[.5em]
+                                \sqrt[\Delta x]{\frac{y_2}{y_1}} &amp; = &amp; b
+                            \end{array}
+                        \]
+                    </p>
+                    <dl>
+                        <dt>*</dt>
+                        <dd>
+                            $\frac{a^r}{a^s} = a^{r - s}$.
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div>
+                <div class="formula">
+                    \[
+                        a = \frac{y}{b^x}
+                    \]
+                </div>
+                <div class="description">
+                    <p>
+                        Der $y$-Achsenabschnitt $a$ kann mit der relativen Änderung $b$ und einem Punkt auf dem Graphen $(x, y)$ ermittelt werden.
+                    </p>
+                </div>
+                <div class="proof">
+                    <p>
+                        \[
+                            \begin{array}{rcl}
+                                y             &amp; = &amp; a \cdot b^x          \\[.5em]
+                                &amp; \Updownarrow &amp; \div b^x                \\
+                                \frac{y}{b^x} &amp; = &amp; a
+                            \end{array}
+                        \]
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="formula">
+                    \[
+                        T_n = \frac{\log n}{\log b}
+                    \]
+                </div>
+                <div class="description">
+                    <p>
+                        Das absolute Wachstum von $x$ wenn $y$ zu $ny$ wird (z.B. die doppelnde Konstante $T_2$ oder die halbierende Konstante $T_{\frac{1}{2}}$) kann vom relativem Wachstum $b$ ermittelt werden.
+                    </p>
+                </div>
+                <div class="proof">
+                    <p>
+                        Der Graph schneidet die $y$-Achse bei $(0, a)$. $T_n$ ist definiert als das absolute Ansteigen von $x$, wenn $y$ $n$-Fach steigt. Wenn $\Delta x = T_n$ ist und der erste Punkt bei $(0, a)$ ist, dann muss der zweite Punkt $(T_n, na)$ sein.
+                    </p>
+                    <p>
+                        Zusammenfassung: $f(T_n) = na$.
+                    </p>
+                    <p>
+                        \[
+                            \begin{array}{rcl}
+                                f(T_n)           &amp; = &amp; na                                            \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Die Funktion mit dessen Definition ersetzen}  \\[.5em]
+                                ab^{T_n}         &amp; = &amp; na                                            \\[.5em]
+                                &amp; \Updownarrow &amp; \div a                                              \\[.5em]
+                                b^{T_n}          &amp; = &amp; n                                             \\[.5em]
+                                &amp; \Updownarrow &amp; \log                                                \\[.5em]
+                                \log(b^{T_n})    &amp; = &amp; \log n                                        \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Logarithmengesetz}*                           \\[.5em]
+                                T_n \cdot \log b &amp; = &amp; \log n                                        \\[1em]
+                                &amp; \Updownarrow &amp; \div \log b                                         \\[1em]
+                                T_n              &amp; = &amp; \frac{\log n}{\log b}
+                            \end{array}
+                        \]
+                    </p>
+                    <dl>
+                        <dt>*</dt>
+                        <dd>
+                            $\log(a^r) = r \cdot \log a$.
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toc"></div>
+</div>
+<script>
+    (function() {
+        var T2StringLong   = katex.renderToString('\\leftarrow T_2 \\rightarrow');
+        var T2StringShort  = katex.renderToString('T_2');
+
+        var T12StringLong  = katex.renderToString('\\leftarrow T_{\\frac{1}{2}} \\rightarrow');
+        var T12StringShort = katex.renderToString('T_{\\frac{1}{2}}');
+
+        var plus100StringLong  = katex.renderToString('\\begin{array}{c} \\uparrow \\\\ +100\\% \\end{array}');
+        var plus100StringShort = katex.renderToString('+100\\%');
+
+        var minus50String      = katex.renderToString('-50\\%');
+
+
+        var exponentialGraph = new InteractiveGraph({
+            plotOptions: {
+                target: "#exponential-graph-visualiser > .graph",
+                data: [{
+                    fn: '2^x',
+                    graphOptions: {
+                        sampler: 'builtIn',
+                        type: 'line'
+                    }
+                }],
+                width:  650,
+                height: 400,
+                disableZoom: true,
+                xLabel: 'x axis',
+                yLabel: 'y axis',
+                xDomain: [-2, 6],
+                yDomain: [-1, 7]
+            },
+            defaultValues: {
+                a: 1,
+                b: 2
+            },
+            inputSelector: '#exponential-graph-visualiser > .graph-controls > .graph-input',
+            fn: '%a * %b^x',
+
+
+            initialDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size) {
+                // a text
+                var aText = document.createElement('div');
+                aText.classList.add('aText');
+                aText.classList.add('v-center');
+                aText.innerHTML = katex.renderToString('(0, a)');
+                aText.style.left = coords.x(0) - 55 + 'px';
+                htmlOverlay.appendChild(aText);
+
+
+                // a dot
+                var aDot = document.createSVGElement('circle');
+                aDot.classList.add('aDot');
+                aDot.setAttribute('cx', coords.x(0));
+                aDot.setAttribute('r', 3);
+                canvas.appendChild(aDot);
+
+
+                // T_n x
+                var Tnx = document.createElement('div');
+                Tnx.classList.add('Tnx');
+                Tnx.classList.add('v-center');
+                Tnx.classList.add('h-center');
+                htmlOverlay.appendChild(Tnx);
+
+
+                // T_n y
+                var Tny = document.createElement('div');
+                Tny.classList.add('Tny');
+                Tny.classList.add('v-center');
+                Tny.classList.add('h-center');
+                htmlOverlay.appendChild(Tny);
+
+
+                // T_n line
+                var TnLineG = document.createSVGElement('g');
+                var TnLine  = document.createSVGElement('path');
+                TnLine.classList.add('TnLine');
+                TnLine.setAttribute('stroke',           'black');
+                TnLine.setAttribute('opacity',          .75);
+                TnLine.setAttribute('stroke-dasharray', '5,5');
+                TnLine.setAttribute('fill',             'none');
+
+                TnLineG.appendChild(TnLine);
+                canvas.appendChild(TnLineG);
+            },
+
+
+            postDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size) {
+                var fn = function(x) {
+                    return values.a * Math.pow(values.b, x);
+                };
+
+
+                // a text
+                var aText = htmlOverlay.querySelector(':scope .aText');
+                aText.style.top = coords.y(values.a) - 10 + 'px';
+
+
+                // a dot
+                var aDot = canvas.querySelector(':scope .aDot');
+                aDot.setAttribute('cy', coords.y(values.a));
+
+
+                // T_n x
+                var Tnx = htmlOverlay.querySelector(':scope .Tnx');
+                var Tn;
+                if (values.b > 1) {
+                    var T2 = Tn = Math.log(2) / Math.log(values.b);
+
+                    if (size.w(T2) >= 70)
+                        Tnx.innerHTML = T2StringLong;
+                    else
+                        Tnx.innerHTML = T2StringShort;
+
+                    Tnx.style.top = coords.y(fn(1)) + 5 + 'px';
+                }
+                else {
+                    var T12 = Tn = Math.log(.5) / Math.log(values.b);
+
+                    if (size.w(T12) >= 70)
+                        Tnx.innerHTML = T12StringLong;
+                    else
+                        Tnx.innerHTML = T12StringShort;
+
+                    Tnx.style.top = coords.y(fn(1)) - 34 + 'px';
+                }
+                Tnx.style.left  = coords.x(1) + 'px';
+                Tnx.style.width = Math.max(size.w(Tn), 21) + 'px';
+
+
+                // T_n y
+                var Tny = htmlOverlay.querySelector(':scope .Tny');
+                if (values.b > 1) {
+                    if (size.h(fn(1 + Tn) - fn(1)) >= 70) {
+                        Tny.innerHTML  = plus100StringLong;
+                        Tny.style.top  = coords.y(fn(1 + Tn)) + 'px';
+                        Tny.style.left = coords.x(1 + Tn)     + 'px';
+                    }
+                    else {
+                        Tny.innerHTML  = plus100StringShort;
+                        Tny.style.top  = coords.y(fn(1 + Tn)) + 10 + 'px';
+                        Tny.style.left = coords.x(1 + Tn)     + 10 + 'px';
+                    }
+                }
+                else {
+                    Tny.innerHTML = minus50String;
+
+                    Tny.style.top  = coords.y(fn(1))       + 'px';
+                    Tny.style.left = coords.x(1 + Tn) + 10 + 'px';
+                }
+
+                Tny.style.height = size.h(fn(1 + Tn) - fn(1)) + 'px';
+
+
+                // T_n line
+                var TnLine = canvas.querySelector(':scope .TnLine');
+                TnLine.setAttribute('d', line([
+                    [1,      fn(1)],
+                    [1 + Tn, fn(1)],
+                    [1 + Tn, fn(1 + Tn)]
+                ]));
+            }
+        });
+    })();
+</script>
