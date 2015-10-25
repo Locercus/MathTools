@@ -78,7 +78,7 @@ function InteractiveGraph(options) {
             fn = fn.replace(new RegExp('%' + variable, 'g'), self.graphValues[variable]);
         }
 
-        self.plotOptions.data = [{ fn: fn }];
+        self.plotOptions.data[0].fn = fn;
 
         self.graph = functionPlot(self.plotOptions);
 
