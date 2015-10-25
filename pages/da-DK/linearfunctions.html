@@ -1,4 +1,4 @@
-<!-- Translated from English: 83d491e365f3bd2855955d9bcaee0ac7b2911b69 -->
+<!-- Translated from English: 29757a7c132ca43974362d4ff09bd8e0cdbb022e -->
 <div class="page">
     <div class="content">
         <h1>Lineære funktioner</h1>
@@ -185,7 +185,7 @@
 
 
                 // Slope
-                var slope = canvas.querySelector('.drawSlope');
+                var slope = canvas.querySelector(':scope > .drawSlope');
 
                 var y1Slope = 2;
                 var x1Slope = fnReverse(y1Slope);
@@ -199,7 +199,7 @@
 
 
                 // m x text
-                var mXText = htmlOverlay.querySelector('.mXText');
+                var mXText = htmlOverlay.querySelector(':scope > .mXText');
 
                 var xmXText = x1Slope;
                 var ymXText = y1Slope;
@@ -214,7 +214,7 @@
 
 
                 // m y text
-                var mYText = htmlOverlay.querySelector('.mYText');
+                var mYText = htmlOverlay.querySelector(':scope > .mYText');
 
                 var xmYText = x3Slope;
                 var ymYText = y2Slope;
@@ -236,13 +236,13 @@
 
 
                 // c text
-                var cText = htmlOverlay.querySelector('.cText');
+                var cText = htmlOverlay.querySelector(':scope > .cText');
 
                 cText.style.top = coords.y(values.c) - 10 + 'px';
 
 
                 // c dot
-                var cDot = canvas.querySelector('.cDot');
+                var cDot = canvas.querySelector(':scope > .cDot');
 
                 cDot.setAttribute('cy', coords.y(values.c));
             }
