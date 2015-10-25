@@ -1,0 +1,29 @@
+{
+    "home": {
+        "name": "Startseite",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>"
+        ],
+        "tags": [
+            "start",
+            "startseite",
+            "index",
+            "inhaltsverzeichnis",
+            "alle",
+            "alles"
+        ]
+    },
+    "linearfunctions": {
+        "name": "Lineare Funktionen",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>"
+        ],
+        "tags": [
+            "funktion",
+            "linear",
+            "linie",
+            "gerade",
+            "proportional"
+        ]
+    }
+}
