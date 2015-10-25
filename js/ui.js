@@ -283,8 +283,18 @@ function toggleDisplayHard(el) {
         var authors = document.createElement('div');
         authors.classList.add('authors');
 
-        authors.innerHTML = data.authors.join(', ');
 
+        if (data.authors.length === 0)
+            return;
+        else if (data.authors.length === 1)
+            var authorString = data.authors.join(', ');
+        else {
+            var authorString = data.authors.slice(0, data.authors.length - 1).join(',');
+            authorString += ' and ' + data.authors[data.authors.length - 1];
+        }
+
+        authors.innerHTML = authorString;
+        
 
         var el2 = el.querySelector(':scope > .page > .content');
         if (el2 !== null)
