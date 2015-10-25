@@ -342,6 +342,10 @@ html > body {
 
                     &:not(:last-child) {
                         margin-bottom: 64px;
+
+                        @media print {
+                            margin-bottom: 0;
+                        }
                     }
 
                     &> input[type="range"] {
