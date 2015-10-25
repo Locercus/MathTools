@@ -225,6 +225,10 @@ function toggleDisplayHard(el) {
 
         toc.style.width = width;
         div.style.position = 'fixed';
+
+        setTimeout(function() {
+            toc.style.height = div.offsetHeight + 'px';
+        }, 1);
     }
 
     function handleFormulaBox(el) {
