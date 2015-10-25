@@ -2,13 +2,13 @@
     <div class="content">
         <h1>Exponential functions</h1>
         <p>
-            An exponential function is a function of the type $f(x) = a \cdot b^x$. Its graph is a straight line when drawn in a semi-logarithmic coordinate system. Thus, an equal <em>absolute</em> growth in the $x$ value results in an equal <em>relative</em> growth in $y$: $y_2 = y_1 \cdot b^{\Delta x}$.
+            An exponential function is a function of the type $f(x) = a \cdot b^x$. Its graph is a curve when drawn in a linear coordinate system, and a straight line when drawn in a semi-logarithmic coordinate system. Thus, an equal <em>absolute</em> growth in the $x$ value results in an equal <em>relative</em> growth in $y$: $y_2 = y_1 \cdot b^{\Delta x}$.
         </p>
         <p>
             Exponential functions are used to describe a relationship where $f$ changes by a relative amount (a percentage) for every $x$; $f$ and $x$ are exponentially proportional.
         </p>
         <p>
-            The graph of exponential functions will always lie above the $x$ axis, as $a > 0$ and $b > 0$. Similarly, the graph will never have $f(x) = 0$, even for functions with $b &lt; 1 $ as the change is relative (unlike in <a href="linearfunctions">linear functions</a> where it's absolute). It'll get infinitely close to 0 but it'll never be 0, as $\frac{n}{2} \neq 0$ when $n \neq 0$.
+            The graph of exponential functions will always lie above the $x$ axis, as $a > 0$ and $b > 0$. Similarly, the graph will never have $f(x) = 0$, even for functions with $b &lt; 1 $ as the change is relative (unlike in <a href="linearfunctions">linear functions</a> where it's absolute). It'll get infinitely close to 0 but it'll never be 0, as $\frac{n}{2} \neq 0$ when $n \neq 0$. This is called an <em>asymptote</em> graph.
         </p>
 
         <h2>Significance of constants</h2>
@@ -19,7 +19,7 @@
             </dd>
             <dt>$b$</dt>
             <dd>
-                The relative decimal growth of $f$ for every $x$. Limited to $b \in \left]0; 1\right[\ \cup\ \left]1; \infty\right[$. The function grows when $b > 1$ and shrinks when $b &lt; 1$. A growth of 20% for every $x$ would have $b = 1.2$, whereas a decrease of 20% would have $b = 0.2$.
+                The relative decimal growth of $f$ for every $x$. Limited to $b \in \left]0; 1\right[\ \cup\ \left]1; \infty\right[$. The function grows when $b > 1$ and shrinks when $b &lt; 1$. A growth of 20% for every $x$ would have $b = 1.2$, whereas a decrease of 20% would have $b = (1 - 0.2) = 0.8$.
             </dd>
         </dl>
 
@@ -46,6 +46,13 @@
                 <div class="graph-input" data-name = "b" data-min="0.01" data-max="5">
                     <span>$b = $ <input type="number"></span>
                     <input type="range">
+                </div>
+                <div class="graph-option">
+                    <p>
+                        Coordinate system
+                    </p>
+                    <label><input type="radio" name="exponential-graph-visualiser-coordinate-system" value="linear" checked> Linear</label><br>
+                    <label><input type="radio" name="exponential-graph-visualiser-coordinate-system" value="semilog"> Semi-logarithmic</label>
                 </div>
             </div>
         </div>
@@ -206,9 +213,10 @@
             },
             inputSelector: '#exponential-graph-visualiser > .graph-controls > .graph-input',
             fn: '%a * %b^x',
+            coordinateSystemSelector: 'input[name=exponential-graph-visualiser-coordinate-system]',
 
 
-            initialDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size) {
+            initialDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size, coordinateSystem) {
                 // a text
                 var aText = document.createElement('div');
                 aText.classList.add('aText');
@@ -256,7 +264,7 @@
             },
 
 
-            postDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size) {
+            postDrawCb: function(graph, canvas, htmlOverlay, values, line, coords, size, coordinateSystem) {
                 var fn = function(x) {
                     return values.a * Math.pow(values.b, x);
                 };
@@ -302,14 +310,14 @@
                 // T_n y
                 var Tny = htmlOverlay.querySelector(':scope .Tny');
                 if (values.b > 1) {
-                    if (size.h(fn(1 + Tn) - fn(1)) >= 70) {
+                    if (size.h(fn(1 + Tn) - fn(1), fn(1)) >= 70) {
                         Tny.innerHTML  = plus100StringLong;
-                        Tny.style.top  = coords.y(fn(1 + Tn)) + 'px';
-                        Tny.style.left = coords.x(1 + Tn)     + 'px';
+                        Tny.style.top  = coords.y(fn(1 + Tn)) - 10 + 'px';
+                        Tny.style.left = coords.x(1 + Tn)          + 'px';
                     }
                     else {
                         Tny.innerHTML  = plus100StringShort;
-                        Tny.style.top  = coords.y(fn(1 + Tn)) + 10 + 'px';
+                        Tny.style.top  = coords.y(fn(1 + Tn))      + 'px';
                         Tny.style.left = coords.x(1 + Tn)     + 10 + 'px';
                     }
                 }
@@ -320,7 +328,7 @@
                     Tny.style.left = coords.x(1 + Tn) + 10 + 'px';
                 }
 
-                Tny.style.height = size.h(fn(1 + Tn) - fn(1)) + 'px';
+                Tny.style.height = size.h(fn(1 + Tn) - fn(1), fn(1)) + 'px';
 
 
                 // T_n line
