@@ -22,5 +22,16 @@
             "line",
             "straight"
         ]
+    },
+    "exponentialfunctions": {
+        "name": "Exponential functions",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>"
+        ],
+        "tags": [
+            "function",
+            "exponential",
+            "curve"
+        ]
     }
 }
