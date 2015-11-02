@@ -23,5 +23,18 @@
             "ret",
             "lige"
         ]
+    },
+    "exponentialfunctions": {
+        "name": "Eksponentialfunktioner",
+        "authors": [
+            "<a href=\"//jonn.me\">Jonatan Nordentoft</a>"
+        ],
+        "tags": [
+            "funktion",
+            "eksponential",
+            "eksponentiel",
+            "kurve",
+            "potens"
+        ]
     }
 }

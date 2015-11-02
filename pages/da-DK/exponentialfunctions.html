@@ -1,99 +1,99 @@
 <div class="page">
     <div class="content">
-        <h1>Exponential functions</h1>
+        <h1>Eksponentialfunktioner</h1>
         <p>
-            An exponential function is a function of the type $f(x) = a \cdot b^x$. Its graph is a curve when drawn in a linear coordinate system, and a straight line when drawn in a semi-logarithmic coordinate system. Thus, an equal <em>absolute</em> growth in the $x$ value results in an equal <em>relative</em> change in $y$: $y_2 = y_1 \cdot b^{\Delta x}$.
+            En eksponentialfunktion er en funktion af typen $f(x) = b \cdot a^x$. Dens graf er en kurve når tegnet i et lineært koordinatsystem og en ret linje i et semi-logaritmisk koordinatsystem. Altså, en givet <em>absolut</em> vækst i $x$ resulterer i en givet <em>relativ</em> ændring i $y$: $y_2 = y_1 \cdot a^{\Delta x}$.
         </p>
         <p>
-            Exponential functions are used to describe a relationship where $f$ changes by a relative amount (a percentage) for every $x$; $f$ and $x$ are exponentially proportional.
+            Eksponentialfunktioner er brugt til at beskrive en sammenhæng hvor $f$ ændres med en relativ mængde (en procentsats) for hver $x$; $f$ og $x$ er eksponentialt proportionale.
         </p>
         <p>
-            The graph of exponential functions will always lie above the $x$ axis, as $a > 0$ and $b > 0$. Similarly, the graph will never have $f(x) = 0$, even for functions with $b &lt; 1 $ as the change is relative (unlike in <a href="linearfunctions">linear functions</a> where it's absolute). It'll get infinitely close to 0 but it'll never be 0, as $\frac{n}{2} \neq 0$ when $n \neq 0$. This is called an <em>asymptote</em> graph.
+            Grafen af en eksponentialfunktion vil altid ligge over $x$-aksen, eftersom $a > 0$ og $b > 0$. Ligeledes vil grafen aldrig have $f(x) = 0$, ikke engang for funktioner med $b &lt; 1$ eftersom ændringen er relativ (modsat i <a href="linearfunctions">lineære funktioner</a> hvor den er absolut). Den kommer uendeligt tæt på 0, men den vil aldrig være 0, eftersom $\frac{n}{2} \neq 0$ når $n \neq 0$. Dette er kaldet en <em>asymptot</em> graf.
         </p>
 
-        <h2>Significance of constants</h2>
+        <h2>Betydning af konstanter</h2>
         <dl>
-            <dt>$a$</dt>
-            <dd>
-                The offset on/intersection with the $y$ axis. Dictates the function value when $x = 0$, as $f(0) = a \cdot b^0 = a \cdot 1 = a$. Limited to $a > 0$.
-            </dd>
             <dt>$b$</dt>
             <dd>
-                The relative decimal change of $f$ for every $x$. Limited to $b \in \left]0; 1\right[\ \cup\ \left]1; \infty\right[$. The function grows when $b > 1$ and shrinks when $b &lt; 1$. A growth of 20% for every $x$ would have $b = 1.2$, whereas a decrease of 20% would have $b = (1 - 0.2) = 0.8$.
+                Forskydningen på/skæringen med $y$-aksen. Dikterer funktionsværdien når $x = 0$ eftersom $f(0) = b \cdot a^0 = b \cdot 1 = b$. Begrænset til $b > 0$.
+            </dd>
+            <dt>$a$</dt>
+            <dd>
+                Den relative decimalændring af $f$ for hver $x$. Begrænset til $a \in \left]0; 1\right[\ \cup\ \left]1; \infty\right[$. Funktionen vokster når $b > 1$ og falder når $b &lt; 1$. En vækst på 20% for hver $x$ ville have $b = 1,2$, hvorimod et fald på 20% ville have $b = (1 - 0,2) = 0,8$.
             </dd>
         </dl>
 
-        <h2>Doubling and halving constants</h2>
+        <h2>Fordoblings- og halveringskonstanter</h2>
         <p>
-            When speaking of an exponential function, the so-called <em>doubling constant</em> $T_2$ and <em>halving constant</em> $T_{\frac{1}{2}}$ are used to express the absolute growth in $x$ needed for $f$ to, respectively, double or halve.
+            Når man taler om en eksponentialfunktion, så er den såkaldte <em>fordoblingskonstant</em> $T_2$ og <em>halveringskonstant</em> $T_{\frac{1}{2}}$ er brugt til at udtrykke den absolutte vækst i $x$ for at $f$, respektivt, fordoble eller halvere.
         </p>
         <p>
-            More generally we can speak of the absolute increase needed in $x$ for $y$ to become $n$ the size as $T_n$.
+            Mere generelt så taler vi om den absolutte tilvækst krævet i $x$ for at $y$ bliver $n$ størrelsen af $T_n$.
         </p>
         <p>
-            You can find the formulae for the doubling and halving constants as well as the general definition in <a href="#formulae">the formula section</a>.
+            Du kan finde formularerne for fordoblings- og halveringskonstanterne samt den generelle definition i <a href="#formulae">formularsektionen</a>.
         </p>
         <p>
-            You can try out exponential functions with the below interactive illustration to get a visualisation of the significance of each of the constants and their correlation to the resulting graph:
+            Du kan afprøve eksponentielle funktioner med den nedenstående interaktive illustration for at få en visualisering af betydningen af hver af konstanterne og deres sammenhæng med den resulterende graf:
         </p>
         <div id="exponential-graph-visualiser" class="hor-box margin-box">
             <div class="graph"></div>
             <div class="graph-controls">
                 <div class="graph-input" data-name = "a" data-min="0.01" data-max="10">
-                    <span>$a = $ <input type="number"></span>
+                    <span>$b = $ <input type="number"></span>
                     <input type="range">
                 </div>
                 <div class="graph-input" data-name = "b" data-min="0.01" data-max="5">
-                    <span>$b = $ <input type="number"></span>
+                    <span>$a = $ <input type="number"></span>
                     <input type="range">
                 </div>
                 <div class="graph-option">
                     <p>
                         Coordinate system
                     </p>
-                    <label><input type="radio" name="exponential-graph-visualiser-coordinate-system" value="linear" checked> Linear</label><br>
-                    <label><input type="radio" name="exponential-graph-visualiser-coordinate-system" value="semilog"> Semi-logarithmic</label>
+                    <label><input type="radio" name="exponential-graph-visualiser-coordinate-system" value="linear" checked> Lineær</label><br>
+                    <label><input type="radio" name="exponential-graph-visualiser-coordinate-system" value="semilog"> Semi-logaritmisk</label>
                 </div>
             </div>
         </div>
 
-        <h2 id="formulae">Formulae</h2>
+        <h2 id="formulae">Formularer</h2>
         <div class="formulae">
             <div>
                 <div class="formula">
                     \[
-                        b = \sqrt[\Delta x]{\frac{y_2}{y_1}}
+                        a = \sqrt[\Delta x]{\frac{y_2}{y_1}}
                     \]
                 </div>
                 <div class="description">
                     <p>
-                        You can find the relative change $b$ given two coordinates $(x_1, y_1)$ and $(x_2, y_2)$ on the same graph.
+                        Du kan finde den relative ændring $a$ givet to koordinater $(x_1; y_1)$ og $(x_2; y_2)$ på den samme graf.
                     </p>
                 </div>
                 <div class="proof">
                     <p>
-                        We create two equations from the two points:
+                        Vi laver to ligninger udfra de to punkter:
                     </p>
                     <p>
                         \[
-                            y_2 = a \cdot b^{x_2} \enspace \text{ and } \enspace y_1 = a \cdot b^{x_1}
+                            y_2 = b \cdot a^{x_2} \enspace \text{ og } \enspace y_1 = b \cdot a^{x_1}
                         \]
                     </p>
                     <p>
-                        We divide the first equation by the second:
+                        Vi dividerer den første ligning med den anden:
                     </p>
                     <p>
                         \[
                             \begin{array}{rcl}
-                                \frac{y_2}{y_1}                  &amp; = &amp; \frac{a \cdot b^{x_2}}{a \cdot b^{x_1}}   \\[1em]
-                                &amp; \Updownarrow &amp; \text{Reduce by }a.                                             \\[.5em]
-                                \frac{y_2}{y_1}                  &amp; = &amp; \frac{b^{x_2}}{b^{x_1}}                   \\[1em]
-                                &amp; \Updownarrow &amp; \text{See }*                                                    \\[.5em]
-                                \frac{y_2}{y_1}                  &amp; = &amp; b^{x_2 - x_1}                             \\[.5em]
+                                \frac{y_2}{y_1}                  &amp; = &amp; \frac{b \cdot a^{x_2}}{b \cdot a^{x_1}}   \\[1em]
+                                &amp; \Updownarrow &amp; \text{Forkort med }b.                                           \\[.5em]
+                                \frac{y_2}{y_1}                  &amp; = &amp; \frac{a^{x_2}}{a^{x_1}}                   \\[1em]
+                                &amp; \Updownarrow &amp; \text{Se }*                                                     \\[.5em]
+                                \frac{y_2}{y_1}                  &amp; = &amp; a^{x_2 - x_1}                             \\[.5em]
                                 &amp; \Updownarrow &amp;                                                                 \\[.5em]
-                                \frac{y_2}{y_1}                  &amp; = &amp; b^{\Delta x}                              \\[1em]
-                                &amp; \Updownarrow &amp; \Delta x \text{ root.}                                          \\[.5em]
-                                \sqrt[\Delta x]{\frac{y_2}{y_1}} &amp; = &amp; b
+                                \frac{y_2}{y_1}                  &amp; = &amp; a^{\Delta x}                              \\[1em]
+                                &amp; \Updownarrow &amp; \Delta x \text{ rod.}                                           \\[.5em]
+                                \sqrt[\Delta x]{\frac{y_2}{y_1}} &amp; = &amp; a
                             \end{array}
                         \]
                     </p>
@@ -113,16 +113,16 @@
                 </div>
                 <div class="description">
                     <p>
-                        You can find the offset $a$ given the relative change $b$ and a point on the graph $(x, y)$.
+                        Du kan finde forskydningen $b$ givet den relative ændring $a$ og et punkt på grafen $(x; y)$.
                     </p>
                 </div>
                 <div class="proof">
                     <p>
                         \[
                             \begin{array}{rcl}
-                                y             &amp; = &amp; a \cdot b^x          \\[.5em]
-                                &amp; \Updownarrow &amp; \text{Divide by }b^x.   \\
-                                \frac{y}{b^x} &amp; = &amp; a
+                                y             &amp; = &amp; b \cdot a^x          \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Divider med }a^x. \\
+                                \frac{y}{a^x} &amp; = &amp; b
                             \end{array}
                         \]
                     </p>
@@ -131,35 +131,35 @@
             <div>
                 <div class="formula">
                     \[
-                        T_n = \frac{\log n}{\log b}
+                        T_n = \frac{\log n}{\log a}
                     \]
                 </div>
                 <div class="description">
                     <p>
-                        You can find the absolute growth in $x$ when $y$ becomes $ny$ (i.e. the doubling constant $T_2$ or the halving constant $T_{\frac{1}{2}}$) given the relative change $b$.
+                        Du kan finde den absolutte vækst i $x$ når $y$ bliver $ny$ (fx fordoblingskonstanten $T_2$ eller halveringskonstanten $T_{\frac{1}{2}}$) givet den relative ændring $a$.
                     </p>
                 </div>
                 <div class="proof">
                     <p>
-                        We know that the graph of the function intersects with the $y$ axis at $(0, a)$. $T_n$ is defined as the absolute increase in $x$ for $y$ to become $n$ the size. Thus if we declare that $\Delta x = T_n$ and our base point is $(0, a)$ then our second point must be $(T_n, na)$.
+                        Vi ved at grafen for funktionen skærer $y$-aksen i $(0, b)$. $T_n$ er defineret som den absolutte tilvækst i $x$ nødvendig for at $y$ bliver $n$ sin størrelse. Dermed hvis vi deklarerer at $\Delta x = T_n$ og at vores basispunkt er $(0; a)$ så må vores sekundære punkt være $(T_N; nb)$.
                     </p>
                     <p>
-                        So to sum up: We have $f(T_n) = na$.
+                        Så for at opsummere: Vi har $f(T_n) = nb$.
                     </p>
                     <p>
                         \[
                             \begin{array}{rcl}
-                                f(T_n)           &amp; = &amp; na                                        \\[.5em]
-                                &amp; \Updownarrow &amp; \text{Replace the function by its definition.}  \\[.5em]
-                                ab^{T_n}         &amp; = &amp; na                                        \\[.5em]
-                                &amp; \Updownarrow &amp; \text{Divide by }a.                             \\[.5em]
-                                b^{T_n}          &amp; = &amp; n                                         \\[.5em]
-                                &amp; \Updownarrow &amp; \text{Apply logarithms.}                        \\[.5em]
-                                \log(b^{T_n})    &amp; = &amp; \log n                                    \\[.5em]
-                                &amp; \Updownarrow &amp; \text{See } *                                   \\[.5em]
-                                T_n \cdot \log b &amp; = &amp; \log n                                    \\[1em]
-                                &amp; \Updownarrow &amp; \text{Divide by }\log b.                        \\[1em]
-                                T_n              &amp; = &amp; \frac{\log n}{\log b}
+                                f(T_n)           &amp; = &amp; nb                                        \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Erstat funktion med dens definition.}     \\[.5em]
+                                ba^{T_n}         &amp; = &amp; nb                                        \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Divider med }b.                           \\[.5em]
+                                a^{T_n}          &amp; = &amp; n                                         \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Benyt logaritmer.}                        \\[.5em]
+                                \log(a^{T_n})    &amp; = &amp; \log n                                    \\[.5em]
+                                &amp; \Updownarrow &amp; \text{Se } *                                    \\[.5em]
+                                T_n \cdot \log a &amp; = &amp; \log n                                    \\[1em]
+                                &amp; \Updownarrow &amp; \text{Divider med }\log a.                      \\[1em]
+                                T_n              &amp; = &amp; \frac{\log n}{\log a}
                             \end{array}
                         \]
                     </p>
@@ -202,8 +202,8 @@
                 width:  650,
                 height: 400,
                 disableZoom: true,
-                xLabel: 'x axis',
-                yLabel: 'y axis',
+                xLabel: 'x-akse',
+                yLabel: 'y-akse',
                 xDomain: [-2, 6],
                 yDomain: [-1, 7]
             },
@@ -221,7 +221,7 @@
                 var aText = document.createElement('div');
                 aText.classList.add('aText');
                 aText.classList.add('v-center');
-                aText.innerHTML = katex.renderToString('(0, a)');
+                aText.innerHTML = katex.renderToString('(0, b)');
                 aText.style.left = coords.x(0) - 55 + 'px';
                 htmlOverlay.appendChild(aText);
 
