@@ -115,7 +115,7 @@ function toggleDisplayHard(el) {
                 }, delay);
 
                 // Set title
-                $('title')[0].textContent = data.name + " – Jon's Math Tools";
+                $('title')[0].textContent = data.name + " – Mia's Math Tools";
 
                 // Add to history
                 if (page === 'home')
